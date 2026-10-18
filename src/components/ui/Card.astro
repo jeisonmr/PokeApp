@@ -1,0 +1,31 @@
+---
+import { Image } from "astro:assets";
+
+interface CardProps {
+  name?: string;
+  url?: string;
+}
+
+const { name, url } = Astro.props as CardProps;
+---
+
+<article
+  class="flex flex-col items-center justify-center gap-2 border border-slate-600 p-4 rounded-lg"
+  transition:name="hero"
+>
+  {
+    url && (
+      <Image
+        src={url}
+        alt={"Foto"}
+        width={200}
+        height={200}
+        aria-hidden="true"
+        class="w-50 h-auto object-contain aspect-square"
+      />
+    )
+  }
+  <h3 class="text-sm font-semibold text-center">
+    {name}
+  </h3>
+</article>

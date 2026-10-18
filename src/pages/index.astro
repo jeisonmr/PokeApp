@@ -1,16 +1,31 @@
 ---
+import { Image } from "astro:assets";
+import DefaultLayout from "../layout/DefaultLayout.astro";
+import { getListPokemons, getIdPokemons } from '../utils/getListPokemon';
+import Card from "../components/ui/Card.astro";
+
+const listPokemons = await getListPokemons();
+const { results } = listPokemons;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<DefaultLayout title="Inicio">
+	<section class="flex flex-col gap-10 items-center h-screen">
+		<h1 class="font-bold text-4xl">Pokemons List</h1>
+
+		<ul class="grid grid-cols-6 gap-2 items-center justify-center">
+			{
+				results.map(async ({...item}, idx:number) =>{
+          let data = await getIdPokemons(idx + 1);
+					console.log(data.sprites.front_shiny);
+					return (
+						<li>
+							<a href={`/pokemons/${data.name}`}>
+								<Card name={data.name} url={data.sprites.other.dream_world.front_default} />
+							</a>
+						</li>
+					)
+				})
+			}
+		</ul>
+	</section>
+</DefaultLayout>
