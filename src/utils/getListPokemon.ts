@@ -24,7 +24,7 @@ export const getIdPokemons = async (code?:number): Promise<string> =>{
  * @param limitPokemon Número de Pokemons a retornar.
  * @returns Promise con la lista de Pokemons.
  */
-export const getListPokemonLimit = async (limitPokemon:number):Promise<string[]> => {
+export const getListPokemonLimit = async (limitPokemon:string):Promise<string[]> => {
   const api = `${import.meta.env.API_POKEMON_PAGINATE}${limitPokemon}`;
   console.log(api);
   const data = await fetch(api);

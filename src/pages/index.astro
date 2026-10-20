@@ -4,7 +4,7 @@ import DefaultLayout from "../layout/DefaultLayout.astro";
 import { getIdPokemons, getListPokemonLimit } from '../utils/getListPokemon';
 import Card from "../components/ui/Card.astro";
 
-const listPokemons = await getListPokemonLimit(100);
+const listPokemons = await getListPokemonLimit('100');
 const { results } = listPokemons as any;
 ---
 
