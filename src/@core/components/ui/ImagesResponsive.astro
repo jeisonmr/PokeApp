@@ -1,0 +1,33 @@
+---
+export interface Props {
+  src:{
+    mobile: string;
+    desktop: string;
+  };
+  alt?: string;
+  className?: {
+    mobile?: string;
+    desktop?: string;
+  };
+  ariaHidden?: boolean;
+  wrapperClass?: string;
+}
+
+const { src, alt = "", className = { mobile: "", desktop: "" }, ariaHidden = false, wrapperClass = "" } = Astro.props;
+---
+
+<div class={`ImageResponsive w-full h-[80vh] ${wrapperClass}`}>
+  <img 
+    src={src.mobile} 
+    alt={alt}
+    loading="lazy"
+    class={`${className.mobile || ""} w-full h-full object-fill desktop:hidden`}
+  />
+  <img
+    src={src.desktop}
+    alt={alt}
+    loading="lazy"
+    class={`${className.desktop || ""} w-full h-full object-fill aspect-square hidden desktop:block`}
+    aria-hidden={ariaHidden}
+  />
+</div>

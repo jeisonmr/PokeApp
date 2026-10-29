@@ -1,0 +1,21 @@
+---
+import Banner from "@/components/blocks/Banner.astro";
+import Nav from "@/components/ui/Nav.astro";
+import Layout  from "@/layout/Layout.astro";
+
+export interface InicioProps{
+	title: string;
+}
+
+const { title = "Inicio" } = Astro.props as InicioProps;
+
+---
+
+<Layout title={title}>
+	<header>
+		<Nav />
+	</header>
+	<section>
+		<Banner />
+	</section>
+</Layout>

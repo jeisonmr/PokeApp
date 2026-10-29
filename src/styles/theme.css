@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+
+   --spacing: 10px;
+
+  --color-black-10: #000000;
+  --color-black-20: #0A0F0D;
+
+  --color-white-10: #FFFFFF;
+
+  --color-green-10: #E4FFDC;
+  --color-green-20: #A2EB76;
+  --color-green-30: #94EC60;
+  --color-green-40: #73C84A;
+  --color-green-50: #789F5E;
+  --color-green-60: #738279;
+  --color-green-70: #628849;
+  --color-green-80: #2B7C1D;
+  --color-green-90: #267616;
+  --color-green-100: #246C1E;
+  --color-green-110: #2A332D;
+  --color-green-120: #173521;
+  --color-green-130: #1D2420;
+  --color-green-140: #141917;
+
+  --color-type-normal: #A8A77A;
+  --color-type-fire: #EE8130;
+  --color-type-water: #6390F0;
+  --color-type-electric: #F7D02C;
+  --color-type-grass: #7AC74C;
+  --color-type-ice: #96D9D6;
+  --color-type-fighting: #C22E28;
+  --color-type-poison: #A33EA1;
+  --color-type-ground: #E2BF65;
+  --color-type-flying: #A98FF3;
+  --color-type-psychic: #F95587;
+  --color-type-bug: #A6B91A;
+  --color-type-rock: #B6A136;
+  --color-type-ghost: #735797;
+  --color-type-dragon: #6F35FC;
+  --color-type-steel: #B7B7CE;
+  --color-type-fairy: #D685AD;
+  --color-type-dark: #705746;
+
+  --breakpoint-movil: 320px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-sm: 1024px;
+  --breakpoint-md: 1280px;
+  --breakpoint-lg: 1440px;
+  --breakpoint-xl: 1920px;
+
+  --font-primary-300: 'primary-300';
+  --font-primary-600: 'primary-600';
+  --font-secondary: 'secondary';
+
+	--text-txt-title1: clamp(4.4rem, 5vw, 6.8rem);
+	--text-txt-title2: clamp(2.7rem, 2.8vw, 2.8rem);
+	--text-txt-title3: clamp(2rem, 2vw, 2rem);
+  --text-txt-description1: clamp(1.3rem, 1.5vw, 1.8rem);
+  --text-txt-description2: clamp(1.4rem, 1.5vw, 1.6rem);
+  --text-txt-description3: clamp(1.3rem, 1.3vw, 1.3rem);
+  --text-txt-description4: clamp(1.1rem, 1.1vw, 1.1rem);
+  --text-txt-description5: clamp(0.9rem, 0.9vw, 0.9rem);
+
+  --line-height-title1: clamp(5rem, 6vw, 7rem);
+  --line-height-title2: clamp(3rem, 3vw, 3.5rem);
+  --line-height-title3: clamp(2.5rem, 2.5vw, 2.8rem);
+  --line-height-description1: clamp(1.8rem, 2vw, 2.2rem);
+  --line-height-description2: clamp(1.6rem, 1.8vw, 2rem);
+  --line-height-description3: clamp(1.4rem, 1.6vw, 1.8rem);
+  --line-height-description4: clamp(1.2rem, 1.4vw, 1.5rem);
+  --line-height-description5: clamp(1.1rem, 1.2vw, 1.3rem);
+
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

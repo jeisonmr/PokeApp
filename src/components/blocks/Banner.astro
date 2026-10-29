@@ -1,0 +1,32 @@
+---
+import BgDesktop from "@media/images/bg-desktop.png";
+import BgMobile from "@media/images/bg-mobile.png";
+import Ivisaur from "@media/images/ivysaur.png";
+import ImagesResponsive from "@core/components/ui/ImagesResponsive.astro";
+import { Image } from "astro:assets";
+---
+ <div class="h-full relative">
+   <ImagesResponsive 
+     src={{ mobile: BgMobile.src, desktop: BgDesktop.src }} 
+     alt="Banner" 
+     wrapperClass="absolute"
+   />
+  <div class="w-full h-full flex movil:flex-col-reverse desktop:flex-row items-center justify-center movil:px-3 desktop:px-12">
+    <div class="movil:h-1/2 desktop:h-[80vh] movil:w-full desktop:w-1/2 relative z-10 flex flex-col movil:items-start desktop:items-center justify-center gap-2.5">
+     <h1 class="text-4xl font-primary-600 text-txt-title1 text-white">Ivysaur</h1>
+     <p class="text-white font-primary-300 text-txt-description1">Ivysaur es la evolución de Bulbasaur, un Pokémon de tipo Planta/Veneno. Con su semilla en constante crecimiento en el lomo, utiliza habilidades como Látigo Cepa para atacar. Es conocido por su lealtad, determinación y temperamento equilibrado. Su evolución a Venusaur es esperada por los entrenadores, pues se vuelve aún más poderoso. Un compañero confiable, ideal para quienes buscan un Pokémon versátil y capaz de enfrentar diversos desafíos con sus habilidades de planta y veneno.</p>
+    </div>
+ 
+    <div class="movil:h-auto 1/2op:h-[80vh] movil:w-full desktop:w-1/2 relative z-10 flex items-center justify-center">
+     <Image
+       loading="lazy"
+       src={Ivisaur}
+       alt="Ivysaur"
+       width={Ivisaur.width}
+       height={Ivisaur.height}
+       aria-hidden="true"
+       class="object-fill movil:w-25 desktop:w-58 h-auto aspect-square"
+     />
+    </div>
+  </div>
+ </div>

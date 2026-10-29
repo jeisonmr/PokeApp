@@ -1,0 +1,10 @@
+@layer utilities {
+
+  .LayoutStyle{
+    @apply bg-black-20;
+  }
+
+  .container {
+    @apply mx-auto px-4;
+  }
+}

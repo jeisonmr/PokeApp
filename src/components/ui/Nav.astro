@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+import Logo from "@base/public/images/Pokeball-logo.png";
+import navData from "@base/src/data/nav.json";
+
+---
+<nav class="flex justify-between items-center py-3 px-5">
+  <div class="flex items-center">
+    <a href="/">
+      <Image
+      src={Logo}
+      alt="PokeWeb"
+      width={30}
+      height={30}
+      class="w-[2.8rem] h-auto object-contain aspect-square"
+     />
+    </a>
+  </div>
+  <div class="flex items-center text-white gap-2 group">
+    <ul class="movil:hidden sm:flex gap-2 font-primary-300">
+     {
+      navData.links.map((link) => (
+        <a href={link.href}><li>{link.text}</li></a>
+      ))
+     }
+    </ul>
+    <span>REGIÓN {'KANTO 01'}</span>
+  </div>
+</nav>

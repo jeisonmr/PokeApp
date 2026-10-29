@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import DefaultLayout from '../../layout/DefaultLayout.astro';
+import Layout from '../../layout/Layout.astro';
 import { getListPokemonLimit } from '../../utils/getListPokemon';
 
 export async function getStaticPaths() {
@@ -38,7 +38,7 @@ const previousUrl = currentPage === 1
   ? '/'
   : `/${currentPage}/`;
 ---
-<DefaultLayout title={`Pokemon ${name}`}>
+<Layout title={`Pokemon ${name}`}>
   <a href={previousUrl}>
     <h1 class="font-bold text-6xl text-center">Pokemon {name}</h1>
     <Image 
@@ -49,5 +49,5 @@ const previousUrl = currentPage === 1
     class="mx-auto w-100 h-auto aspect-square" 
     />
   </a>
-</DefaultLayout>
+</Layout>
 
