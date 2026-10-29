@@ -1,0 +1,12 @@
+---
+interface Props {
+  variant?: "primary" | "secondary" | "outline";
+  className?: string;
+}
+
+const { className = "", variant = "primary", className: customClassName = "" } = Astro.props;
+---
+
+<button class={`Button Button--${variant} ${className} ${customClassName}`} {...Astro.props}>
+  <slot />
+</button>

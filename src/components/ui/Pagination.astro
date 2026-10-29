@@ -1,0 +1,26 @@
+---
+import Card from "../ui/Card.astro";
+const { listPokemons, page } = Astro.props;
+---
+<section class="flex flex-col gap-10 items-center h-screen">
+		<h1 class="font-bold text-4xl">Pokemons List</h1>
+
+		<ul class="grid grid-cols-3 gap-2 items-center justify-center">
+			{
+				listPokemons.map(({name, url}) =>{
+					return (
+						<li>
+							<a href={`/pokemon/${name}?pages=${page?.currentPage}`}>
+								<Card name={name} url={url} />
+							</a>
+						</li>
+					)
+				})
+			}
+		</ul>
+    <nav class="flex gap-6 items-center">
+      {page?.url?.prev && <a href={page.url.prev}>Anterior</a>}
+      <span>Página {page?.currentPage} de {page?.lastPage}</span>
+      {page?.url?.next && <a href={page.url.next}>Siguiente</a>}
+    </nav>
+	</section>

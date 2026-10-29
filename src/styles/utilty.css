@@ -7,4 +7,16 @@
   .container {
     @apply mx-auto px-4;
   }
+
+  .Button--primary {
+    @apply bg-black/80 text-white font-primary-600 text-txt-title3 rounded-xs p-1.5 cursor-pointer;
+  }
+  
+  .Button--secondary {
+    @apply text-white font-primary-600 text-txt-title3;
+  }
+  
+  .Button--outline {
+    @apply border border-white text-white;
+  }
 }
