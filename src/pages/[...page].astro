@@ -1,40 +1,47 @@
 ---
+import Title from "@/@core/components/ui/Title.astro";
 import Banner from "@/components/blocks/Banner.astro";
 import Nav from "@/components/ui/Nav.astro";
 import Pagination from "@/components/ui/Pagination.astro";
-import Layout  from "@/layout/Layout.astro";
+import Layout from "@/layout/Layout.astro";
 import { getIdPokemons, getListPokemonLimit } from "@/utils/getListPokemon";
 import type { GetStaticPathsOptions } from "astro";
 
-export async function getStaticPaths({paginate} : GetStaticPathsOptions) {
-	const listPokemons = await getListPokemonLimit("100");
-	const { results } = listPokemons as unknown as { results: { name: string; url: string } };
-	
-	return paginate(results, {
-		pageSize: 6,
-	})	
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const listPokemons = await getListPokemonLimit("9");
+  const { results } = listPokemons as unknown as {
+    results: { name: string; url: string };
+  };
+
+  return paginate(results, {
+    pageSize: 6,
+  });
 }
 
 const { page } = Astro.props;
 
-const listPokemons = page?.data ? await Promise.all(page.data.map(async (pokemon) =>{
-	const id = pokemon.url.split("/").filter(Boolean).pop()!;
-	const data = await getIdPokemons(id);
-	return {
-		name: data.name,
-		url: data.sprites.other.dream_world.front_default,
-	};
-})) : [];
+const listPokemons = page?.data
+  ? await Promise.all(
+      page.data.map(async (pokemon) => {
+        const id = pokemon.url.split("/").filter(Boolean).pop()!;
+        const data = await getIdPokemons(id);
+        return {
+          name: data.name,
+          url: data.sprites.other.home.front_default,
+        };
+      }),
+    )
+  : [];
 ---
 
-<Layout title={'Pokemon SSG'}>
-	<header>
-		<Nav />
-	</header>
-	<section>
-		<Banner />
-	</section>
-	<section>
+<Layout title={"Pokemon SSG"}>
+  <header>
+    <Nav />
+  </header>
+
+	<Banner />
+
+	<div class="block-padding-x h-full">	
 		<Pagination listPokemons={listPokemons} page={page} />
-	</section>
+	</div>
 </Layout>

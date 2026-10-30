@@ -1,31 +1,71 @@
 ---
 import { Image } from "astro:assets";
+import IconArrow from "@base/public/icons/arrow.png";
+import ImageHalo from "@base/public/images/halo.png";
+import type { TypePokemonProps } from "@/models/theme.ts";
+import { typePokemon } from "@/models/theme.ts";
 
 interface CardProps {
   name?: string;
   url?: string;
+  customCard?: TypePokemonProps;
 }
 
-const { name, url } = Astro.props as CardProps;
+const { name, url, customCard } = Astro.props as CardProps;
+
+const { type, 
+        border, 
+        bgCard, 
+        tag } = typePokemon[customCard] as TypePokemonProps;
+
 ---
 
 <article
-  class="flex flex-col items-center justify-center gap-2 border border-slate-600 p-4 rounded-lg"
+  class={`
+    ${bgCard} 
+    ${border.borderColor}
+    ${border.hoverBorderColor} 
+    flex flex-col items-center justify-center gap-2
+    px-1 py-2 rounded-lg
+  `}
   transition:name="hero"
 >
+<header class="flex justify-between w-full">
+  <p class="w-full text-txt-description3 font-primary-300">{'N.°001'}</p>
+  <Image
+    src={IconArrow}
+    alt={`Ir a la interna de ${name}`}
+    width={24}
+    height={24}
+    class="w-auto h-auto object-contain aspect-square"
+  />
+</header>
   {
     url && (
-      <Image
-        src={url}
-        alt={"Foto"}
-        width={200}
-        height={200}
-        aria-hidden="true"
-        class="w-50 h-auto object-contain aspect-square"
-      />
+      <div class="relative w-full h-full flex items-center justify-center">
+        <Image
+          src={ImageHalo}
+          alt=""
+          width={200}
+          height={200}
+          aria-hidden="true"
+          class="w-20 h-auto absolute top-1/2 left-[50%] -translate-x-1/2 -translate-y-1/2 z-10"
+        />
+        <Image
+          src={url}
+          alt={"Foto"}
+          width={142}
+          height={114}
+          aria-hidden="true"
+          class="w-[14.2rem] h-auto object-contain aspect-square relative z-20"
+        />
+      </div>
     )
   }
-  <h3 class="text-sm font-semibold text-center">
-    {name}
-  </h3>
+  <div class="w-full">
+    <h3 class="text-txt-title4 font-primary-600">
+      {name}
+    </h3>
+    <span class="text-txt-description4 font-primary-300">Planta</span>
+  </div>
 </article>

@@ -1,0 +1,78 @@
+---
+import Title from "./Title.astro";
+
+export interface SearchProps {
+  placeholder?: string;
+  title?: string;
+  titleSelectType?: string;
+  titleSelectGeneration?: string;
+  searchText?: boolean;
+  selectType?: boolean;
+  selectGeneration?: boolean;
+}
+
+const {
+  placeholder = "buscar",
+  title,
+  titleSelectType,
+  titleSelectGeneration,
+  searchText,
+  selectType,
+  selectGeneration,
+} = Astro.props;
+---
+
+<form class="flex flex-col gap-2 h-fill">
+  <div class="w-full flex movil:flex-col desktop:flex-row gap-1.5">
+    <div class="movil:w-full desktop:w-[60%] flex flex-col gap-2">
+      {
+        searchText && (
+          <Title 
+            title={title} 
+            component="label"
+            className="font-primary-600 text-txt-description3 uppercase"
+          />
+          <input type="text" placeholder={placeholder} />
+        )
+      }
+    </div>
+    <div class="movil:w-full desktop:w-[20%] flex flex-col gap-2">
+      {
+        selectType && (
+          <Title 
+            title="Tipo" 
+            component="label"
+            className="font-primary-600 text-txt-description3 uppercase"
+          />
+          <select>
+            <option value=""></option>
+          </select>
+        )
+      }
+    </div>
+    <div class="movil:w-full desktop:w-[20%] flex flex-col gap-2">
+      {
+        selectGeneration && (
+          <Title 
+            title={titleSelectGeneration} 
+            component="label"
+            className="font-primary-600 text-txt-description3 uppercase"
+          />
+          <select>
+            <option value=""></option>
+          </select>
+        )
+      }
+    </div>
+  </div>
+  <div class="flex gap-1 items-center">
+    <span class="font-primary-300 text-txt-description3 rounded-xs px-1.5 py-0.5 bg-white/10 text-white">Generación</span>
+    <span class="font-primary-300 text-txt-description3 rounded-xs px-1.5 py-0.5 bg-white/10 text-white">Tipo</span>
+    <a href="/">
+      <span class="font-primary-300 text-txt-description3 underline cursor-pointer text-white">
+        Limpiar filtros
+      </span>
+    </a>
+
+  </div>
+</form>

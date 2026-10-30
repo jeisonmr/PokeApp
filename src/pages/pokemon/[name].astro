@@ -16,8 +16,7 @@ export async function getStaticPaths() {
   return results.map((pokemon: { name: string; url: string, page: string }) => {
     const name = pokemon.name as string;
     const url  = pokemon.url as string;
-    console.log(pokemon);
-    
+        
     return {
       params: { name },
       props: { 
