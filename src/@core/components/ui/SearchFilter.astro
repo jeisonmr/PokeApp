@@ -24,7 +24,7 @@ const {
 
 <form class="flex flex-col gap-2 h-fill">
   <div class="w-full flex movil:flex-col desktop:flex-row gap-1.5">
-    <div class="movil:w-full desktop:w-[60%] flex flex-col gap-2">
+    <div class="movil:w-full desktop:w-[60%] flex flex-col gap-0.5">
       {
         searchText && (
           <Title 
@@ -36,33 +36,35 @@ const {
         )
       }
     </div>
-    <div class="movil:w-full desktop:w-[20%] flex flex-col gap-2">
-      {
-        selectType && (
-          <Title 
-            title="Tipo" 
-            component="label"
-            className="font-primary-600 text-txt-description3 uppercase"
-          />
-          <select>
-            <option value=""></option>
-          </select>
-        )
-      }
-    </div>
-    <div class="movil:w-full desktop:w-[20%] flex flex-col gap-2">
-      {
-        selectGeneration && (
-          <Title 
-            title={titleSelectGeneration} 
-            component="label"
-            className="font-primary-600 text-txt-description3 uppercase"
-          />
-          <select>
-            <option value=""></option>
-          </select>
-        )
-      }
+    <div class="flex gap-2 movil:w-full desktop:w-[40%]">
+      <div class="w-[50%] flex flex-col gap-0.5">
+        {
+          selectType && (
+            <Title 
+              title="Tipo" 
+              component="label"
+              className="font-primary-600 text-txt-description3 uppercase"
+            />
+            <select>
+              <option value=""></option>
+            </select>
+          )
+        }
+      </div>
+      <div class="w-[50%] flex flex-col gap-0.5">
+        {
+          selectGeneration && (
+            <Title 
+              title={titleSelectGeneration} 
+              component="label"
+              className="font-primary-600 text-txt-description3 uppercase"
+            />
+            <select>
+              <option value=""></option>
+            </select>
+          )
+        }
+      </div>
     </div>
   </div>
   <div class="flex gap-1 items-center">

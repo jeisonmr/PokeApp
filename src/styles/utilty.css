@@ -6,6 +6,10 @@
     @apply movil:px-2 desktop:px-5.5;
   }
 
+  .block-padding-big-x{
+    @apply movil:px-2 desktop:px-5.5 md:px-20 xl:px-35;
+  }
+
   /* Estilos del Layout | Plantilla general */
   .LayoutStyle{
     @apply bg-black-20;

@@ -16,7 +16,7 @@ export interface Props {
 const { src, alt = "", className = { mobile: "", desktop: "" }, ariaHidden = false, wrapperClass = "" } = Astro.props;
 ---
 
-<div class={`ImageResponsive w-full h-[80vh] ${wrapperClass}`}>
+<div class={`ImageResponsive w-full h-[60vh] ${wrapperClass}`}>
   <img 
     src={src.mobile} 
     alt={alt}
