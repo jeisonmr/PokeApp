@@ -2,9 +2,27 @@
 import Title from "@/@core/components/ui/Title.astro";
 import Card from "../ui/Card.astro";
 import SearchFilter from "@core/components/ui/SearchFilter.astro";
-const { listPokemons, page } = Astro.props;
----
+import type { PokemonProps } from "@/models/types/pokemon";
+import { getIdPokemon } from "@/utils/getListPokemon";
 
+const { page } = Astro.props;
+
+
+const pokemonsAll = page?.data ? await Promise.all(
+      page.data.map(async (pokemon: PokemonProps) => {
+
+        const id = pokemon.id;
+        const data = await getIdPokemon(id);
+        console.log(data);
+        return {
+          name: pokemon.name,
+          // url: data.sprites?.other?.home?.front_default
+        };
+      }),
+    )
+  : [];
+---
+<!-- sprites.other.home.front_default, -->
 <section class="flex flex-col gap-2 h-screen">
   <Title
     title="encuentra tu Pokémon"
@@ -23,12 +41,12 @@ const { listPokemons, page } = Astro.props;
   />
 
 	<h3 class="text-txt-description2 font-primary-300">
-	 {listPokemons.length} Pókemon <span class="tex-white">encontrados</span>
+	 {pokemonsAll.length} Pókemon <span class="tex-white">encontrados</span>
 	</h3>
 
   <ul class="grid movil:grid-cols-2 desktop:grid-cols-3 gap-2 items-center justify-center">
     {
-      listPokemons.map(({ name, url }) => {
+      pokemonsAll.map(({ name, url }) => {
         return (
           <li>
             <a href={`/pokemon/${name}?pages=${page?.currentPage}`}>
