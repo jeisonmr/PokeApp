@@ -3,7 +3,8 @@ import Title from "@/@core/components/ui/Title.astro";
 import Card from "../ui/Card.astro";
 import SearchFilter from "@core/components/ui/SearchFilter.astro";
 import type { PokemonProps } from "@/models/types/pokemon";
-import { getIdPokemon } from "@/utils/getListPokemon";
+import { getIdPokemon } from "@/services/api.services";
+
 
 const { page } = Astro.props;
 

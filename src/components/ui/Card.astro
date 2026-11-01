@@ -2,21 +2,20 @@
 import { Image } from "astro:assets";
 import IconArrow from "@base/public/icons/arrow.png";
 import ImageHalo from "@base/public/images/halo.png";
-import type { TypePokemonProps } from "@/models/theme.ts";
-import { typePokemon } from "@/models/theme.ts";
+import { typePokemon } from "@/models/themes/buttonThemes";
 
 interface CardProps {
   name?: string;
   url?: string;
-  customCard?: TypePokemonProps;
+  customCard?: CardProps;
 }
 
-const { name, url, customCard } = Astro.props as CardProps;
-
+let { name, url, customCard } = Astro.props as CardProps;
+customCard = "planta";
 const { type, 
         border, 
         bgCard, 
-        tag } = typePokemon[customCard] as TypePokemonProps;
+        tag } = typePokemon[customCard] as CardProps;
 
 ---
 

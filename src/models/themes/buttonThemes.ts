@@ -1,20 +1,6 @@
+import type { CardProps } from "@/@core/models/types/card";
 
-
-export interface TypePokemonProps {
-  type: string;
-  bgCard: string;
-  border: {
-    borderColor: string;
-    hoverBorderColor: string;
-  };
-  icon?: string;
-  tag?: {
-    icon: string;
-    bgTag: string;
-  };
-}
-
-export const typePokemon: Record<string, TypePokemonProps> = {
+export const typePokemon: Record<string, CardProps> = {
   "acero": {
     type: "acero",
     bgCard: 'bg-linear-to-b from-[--color-black-10] via-[#B7B7CE] to-[--color-black-10]',

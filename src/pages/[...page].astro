@@ -4,7 +4,8 @@ import Banner from "@/components/blocks/Banner.astro";
 import Nav from "@/components/ui/Nav.astro";
 import Pagination from "@/components/ui/Pagination.astro";
 import Layout from "@/layout/Layout.astro";
-import { getPokemonLimit } from "@/utils/getListPokemon";
+import { getPokemonLimit } from "@/services/api.services";
+
 import type { GetStaticPathsOptions } from "astro";
 import type { PokemonAllProps } from "@/models/types/pokemonAll";
 

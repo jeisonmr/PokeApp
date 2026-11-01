@@ -1,7 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../../layout/Layout.astro';
-import { getPokemonLimit } from '../../utils/getListPokemon';
+import { getPokemonLimit } from "@/services/api.services";
+
 
 export async function getStaticPaths() {
   const response = await getPokemonLimit(700);
