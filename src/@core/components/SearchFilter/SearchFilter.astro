@@ -1,5 +1,5 @@
 ---
-import Title from "../Title/Title.astro";
+import Typographi from "../Typographi/Typographi.astro";
 
 export interface SearchProps {
   placeholder?: string;
@@ -27,7 +27,7 @@ const {
     <div class="movil:w-full desktop:w-[60%] flex flex-col gap-0.5">
       {
         searchText && (
-          <Title 
+          <Typographi 
             title={title} 
             component="label"
             className="font-primary-600 text-txt-description3 uppercase"
@@ -40,7 +40,7 @@ const {
       <div class="w-[50%] flex flex-col gap-0.5">
         {
           selectType && (
-            <Title 
+            <Typographi 
               title="Tipo" 
               component="label"
               className="font-primary-600 text-txt-description3 uppercase"
@@ -54,7 +54,7 @@ const {
       <div class="w-[50%] flex flex-col gap-0.5">
         {
           selectGeneration && (
-            <Title 
+            <Typographi 
               title={titleSelectGeneration} 
               component="label"
               className="font-primary-600 text-txt-description3 uppercase"

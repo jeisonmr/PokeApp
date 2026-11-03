@@ -1,4 +1,4 @@
-import { ApiPokemon, ApiPokemonLimit } from "@/utils/constants/api.constants";
+import { ApiPokemon, ApiPokemonLimit, ApiPokemonSpecies } from "@/utils/constants/api.constants";
 import { generations } from "@/utils/constants/services.constans";
 import type { PokemonProps } from "@/models/types/pokemon";
 import type { GenerationProps, PokemonAllProps } from "@/models/types/pokemonAll";
@@ -75,5 +75,19 @@ export const getPokemonGeneration = async (generation:string):Promise<PokemonAll
   const api = `${ApiPokemonLimit}?limit=${init}&offset=${end}`;
   const data = await fetch(api);
   const res = await data.json();
+  return res;
+}
+
+console.log("API:", ApiPokemonSpecies);
+
+/**
+ * Esta función retorna la información de un Pokemon específico por su nombre o ID.
+ * @param pokemon Nombre o ID del Pokemon.
+ * @returns Promise con la información del Pokemon.
+ */
+export const getSpecies = async (pokemon:number|string):Promise<PokemonAllProps> => {
+  const api = `${ApiPokemonSpecies}${pokemon}`;
+  const data = await fetch(api);
+  const res = await data.json() as PokemonAllProps;
   return res;
 }

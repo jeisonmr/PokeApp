@@ -8,8 +8,6 @@ export function initSwiper() {
 
   if (swiper) {
     // TODO: Initialize swiper here
-    console.log('Swiper initialized');
-
     swiper.setAttribute("data-initialized", "true")
     const optionsJson = swiper.getAttribute('data-options') || '{}';
     let customOptions = {};

@@ -4,6 +4,7 @@ import Card from "../ui/Card.astro";
 import SearchFilter from "@core/components/SearchFilter/SearchFilter.astro";
 import type { PokemonProps } from "@/models/types/pokemon";
 import { getIdPokemon } from "@/services/api.services";
+import Typographi from "@/@core/components/Typographi/Typographi.astro";
 
 const { page } = Astro.props;
 
@@ -22,12 +23,12 @@ const pokemonsAll = page?.data ? await Promise.all(
 ---
 <!-- sprites.other.home.front_default, -->
 <section class="flex flex-col gap-2 h-screen">
-  <Title
+  <Typographi
     component="h2"
-    className="movil:text-txt-title3 desktop:text-txt-title2 font-secondary py-2"
+    className="movil:text-txt-title3 desktop:text-txt-title2 font-primary-600 pt-2.5 desktop:pt-5"
   >
     Encuentra tu Pokémon
-  </Title>
+  </Typographi>
 
   <SearchFilter
     searchText

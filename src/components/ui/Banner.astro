@@ -1,17 +1,20 @@
 ---
 import Button from "@/@core/components/Button/Button.astro";
 import ImagesResponsive from "@/@core/components/ImagesResponsive/ImagesResponsive.astro";
-import Title from "@/@core/components/Title/Title.astro";
+import Typographi from "@/@core/components/Typographi/Typographi.astro";
 import { Image } from "astro:assets";
 import { normalizeType } from "../../utils/banner/banner";
+import iconPokeball from "@base/public/icons/Pokeball-logo.png";
 
 export interface BannerUIProps{
   name?: string;
+  description?: string;
   image?: string;
   type?: string;
+  number?: number;
 }
 
-const { name, image, type } = Astro.props;
+const { name, description, image, type, number } = Astro.props;
 // console.log(type);
 
 const types = type.map(({type}:any) =>{
@@ -26,8 +29,8 @@ const normalizedType = type
 : "normal";
 
 // Importar dinámicamente las imágenes según el tipo
-const bgDesktop = `/images/banners_desktop/${normalizedType[0]}.png`;
-const bgMobile = `/images/banners_mobile/${normalizedType[0]}.png`;
+const bgDesktop = `/images/banners_desktop/${normalizedType[0]}.webp`;
+const bgMobile = `/images/banners_mobile/${normalizedType[0]}.webp`;
 const iconMedal = Array.of(...normalizedType);
 ---
 <article class="h-full">
@@ -38,39 +41,60 @@ const iconMedal = Array.of(...normalizedType);
         alt={`Pokémon tipo ${normalizedType}`}
         wrapperClass="absolute"
       />
+
+      <div class="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none bg-gradient-to-t 
+        from-black via-black/40 to-transparent 
+        [clip-path:ellipse(75%_100%_at_50%_100%)]"
+      ></div>
     )
   }
   <div class="w-full h-full flex movil:flex-col-reverse desktop:flex-row justify-center movil:px-3 desktop:px-12">
-    <div class="movil:h-1/2 desktop:h-[60vh] movil:w-full desktop:w-1/2 relative z-10 flex flex-col justify-center gap-3">
-      <Title
-        component="h1"
-        className="capitalize text-4xl font-pokemon-300 text-txt-title0 text-white"
-      >
-        {name}
-      </Title>
+    <div class="movil:h-60 desktop:h-[70vh] movil:w-full desktop:w-1/2 relative z-10 flex flex-col desktop:justify-center gap-1">
+      <div class="flex flex-col movil:gap-2 desktop:gap-5">
+        <Typographi
+          component="h1"
+          className="capitalize text-4xl font-pokemon-300 text-txt-title0 text-white"
+        >
+          {name}
+        </Typographi>
+  
+        <p class="text-white text-txt-description1 font-primary-300 w-full lg:w-[70%]">
+          {description || name}
+        </p>
+      </div>
 
       {
         iconMedal.length > 0 && (
-          <div class="flex gap-1">
+          <div class="flex gap-0.5 mt-1">
             {iconMedal.map((medal) => (
-              <Image
-                src={`/icons/medals/${medal}.png`}
-                alt={`Icono de tipo ${medal}`}
-                width={20}
-                height={20}
-                class="w-4 h-4"
-              />
+              <picture class="flex flex-col items-center justify-between gap-1 rounded-xs bg-black/30 p-1">
+                <Image
+                  src={`/icons/medals/${medal}.png`}
+                  alt={`Icono de tipo ${medal}`}
+                  width={20}
+                  height={20}
+                  class="w-4 h-4"
+                />
+                <label for="" class="text-white text-xs font-primary-600 uppercase">{medal}</label>
+              </picture>
             ))}
           </div>
         )
       }
   
-      <Button variant="primary" className="font-primary-600 text-txt-title3">
+      <Button variant="primary" className="w-fit flex items-center justify-center gap-1 font-primary-600 text-txt-title3">
+        <Image
+          src={iconPokeball}
+          alt="Flecha derecha"
+          width={20}
+          height={20}
+          class="w-2 h-2"
+        />
         Más detalles
       </Button>
     </div>
   
-    <div class="movil:h-auto 1/2op:h-[60vh] movil:w-full desktop:w-1/2 relative z-10 flex items-center justify-center">
+    <div class="h-auto movil:w-full desktop:w-1/2 relative z-10 flex items-center justify-center max-desktop:pt-2">
       {image && (
         <Image
           loading="lazy"
@@ -78,7 +102,7 @@ const iconMedal = Array.of(...normalizedType);
           alt={name || "Pokemon"}
           width={200}
           height={200}
-          class="pokemon_image object-fill movil:w-fit desktop:w-[70%] h-auto aspect-square"
+          class="pokemon_image object-fill w-20 lg:w-[70%] h-auto aspect-square"
         />
       )}
     </div>

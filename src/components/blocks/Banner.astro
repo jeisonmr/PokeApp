@@ -1,5 +1,5 @@
 ---
-import { getIdPokemon } from "@/services/api.services";
+import { getIdPokemon, getSpecies } from "@/services/api.services";
 import IdBanners from "@/data/data.json";
 import SwiperSlider from "@/@core/components/Swiper/SwiperSlider.astro";
 import Banner from "../ui/Banner.astro";
@@ -11,23 +11,27 @@ const idBanners = IdBanners.idBanners;
 const pokemonFromBanner = await Promise.all(
   idBanners.map(async (id: number) => {
     const pokemon = await getIdPokemon(id);
+    const species = await getSpecies(id);
     const primaryType: any[] | string  = pokemon.types || "normal";
+    console.log(species);
     return {
       name: pokemon.name,
       image: pokemon.sprites.other?.dream_world.front_default,
-      type: primaryType, // Viene en inglés de la API
+      type: primaryType,
+      number: pokemon.id,
+      description: species.flavor_text_entries?.[39]?.flavor_text || "",
     };
   }),
 );
 ---
 
-<section class="Banner h-[80vh] relative max-desktop:hidden">
+<section class="movil:h-60 desktop:h-[70vh] relative">
   <SwiperSlider
     Component={Banner}
     slideProps={pokemonFromBanner}
     swiperContainer="h-full"
     swiperWrapper="h-full"
-    swiperSlide="h-full"
+    swiperSlide="h-full overflow-hidden"
     swiperPagination=""
     swiperButtonPrev=""
     swiperButtonNext=""

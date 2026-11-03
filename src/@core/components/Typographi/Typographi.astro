@@ -1,0 +1,15 @@
+---
+export interface TypographiProps {
+  className?: string;
+  component: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
+}
+
+const { className, component } = Astro.props as TypographiProps;
+
+const Wrapper = component;
+---
+{
+  <Wrapper class={`${className}`}>
+    <slot />
+  </Wrapper>
+}
