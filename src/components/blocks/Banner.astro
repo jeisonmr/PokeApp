@@ -1,46 +1,43 @@
 ---
-import BgDesktop from "@media/images/bg-desktop.png";
-import BgMobile from "@media/images/bg-mobile.png";
-import Ivisaur from "@media/images/ivysaur.png";
-import ImagesResponsive from "@core/components/ui/ImagesResponsive.astro";
-import { Image } from "astro:assets";
-import Button from "@core/components/ui/Button.astro";
+import { getIdPokemon } from "@/services/api.services";
+import IdBanners from "@/data/data.json";
+import SwiperSlider from "@/@core/components/Swiper/SwiperSlider.astro";
+import Banner from "../ui/Banner.astro";
+
+
+// Data API - Envolviendo en función async
+const idBanners = IdBanners.idBanners;
+
+const pokemonFromBanner = await Promise.all(
+  idBanners.map(async (id: number) => {
+    const pokemon = await getIdPokemon(id);
+    const primaryType: any[] | string  = pokemon.types || "normal";
+    return {
+      name: pokemon.name,
+      image: pokemon.sprites.other?.dream_world.front_default,
+      type: primaryType, // Viene en inglés de la API
+    };
+  }),
+);
 ---
 
-<div class="h-[60vh] relative max-desktop:hidden">
-  <ImagesResponsive
-    src={{ mobile: BgMobile.src, desktop: BgDesktop.src }}
-    alt="Banner"
-    wrapperClass="absolute"
+<section class="Banner h-[80vh] relative max-desktop:hidden">
+  <SwiperSlider
+    Component={Banner}
+    slideProps={pokemonFromBanner}
+    swiperContainer="h-full"
+    swiperWrapper="h-full"
+    swiperSlide="h-full"
+    swiperPagination=""
+    swiperButtonPrev=""
+    swiperButtonNext=""
+    options={{
+      effect: "fade",
+      speed: 2000,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+      },
+    }}
   />
-  <div class="w-full h-full flex movil:flex-col-reverse desktop:flex-row justify-center movil:px-3 desktop:px-12">
-    <div class="movil:h-1/2 desktop:h-[60vh] movil:w-full desktop:w-1/2 relative z-10 flex flex-col justify-center gap-2.5">
-      <h1 class="text-4xl font-primary-600 text-txt-title1 text-white">
-        Ivysaur
-      </h1>
-      <!-- <p class="text-white font-primary-300 text-txt-description1">
-        Ivysaur es la evolución de Bulbasaur, un Pokémon de tipo Planta/Veneno.
-        Con su semilla en constante crecimiento en el lomo, utiliza habilidades
-        como Látigo Cepa para atacar.
-      </p> -->
-      <Button 
-        variant="primary" 
-        className="font-primary-600 text-txt-title3"
-      >
-        Más detalles
-      </Button>
-    </div>
-
-    <div class="movil:h-auto 1/2op:h-[60vh] movil:w-full desktop:w-1/2 relative z-10 flex items-center justify-center">
-      <Image
-        loading="lazy"
-        src={Ivisaur}
-        alt="Ivysaur"
-        width={Ivisaur.width}
-        height={Ivisaur.height}
-        aria-hidden="true"
-        class="object-fill movil:w-25 desktop:w-50 h-auto aspect-square"
-      />
-    </div>
-  </div>
-</div>
+</section>

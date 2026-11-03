@@ -1,0 +1,60 @@
+---
+// import Swiper and modules styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "swiper/css/effect-fade";
+
+import type { SwiperOptions } from "swiper/types";
+
+export interface SwiperSliderProps {
+  swiperContainer?: string;
+  swiperWrapper?: string;
+  swiperSlide?: string;
+  swiperPagination?: string;
+  swiperButtonPrev?: string;
+  swiperButtonNext?: string;
+  swiperScrollbar?: string;
+  Component: any;
+  slideProps?: Record<string, any>[];
+  options: SwiperOptions;
+}
+
+const {
+  Component,
+  slideProps,
+  swiperContainer = "",
+  swiperWrapper = "",
+  swiperSlide = "",
+  swiperPagination = "",
+  swiperButtonPrev = "",
+  swiperButtonNext = "",
+  swiperScrollbar = "",
+  options,
+} = Astro.props;
+---
+
+<!-- Slider main container -->
+<div class={`swiper ${swiperContainer}`} data-options={JSON.stringify(options)}>
+  <!-- Additional required wrapper -->
+  <div class={`swiper-wrapper ${swiperWrapper}`}>
+    <!-- Slides -->
+    {
+      slideProps?.map((props:any)=>(
+        <div class={`swiper-slide ${swiperSlide}`}>
+          <Component {...props}/>
+        </div>
+      ))
+    }
+  </div>
+  <!-- If we need pagination -->
+  <div class={`swiper-pagination ${swiperPagination}`}></div>
+
+  <!-- If we need navigation buttons -->
+  <div class={`swiper-button-prev ${swiperButtonPrev}`}></div>
+  <div class={`swiper-button-next ${swiperButtonNext}`}></div>
+
+  <!-- If we need scrollbar -->
+  <div class={`swiper-scrollbar ${swiperScrollbar}`}></div>
+</div>

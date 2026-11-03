@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import '@/styles/global.css'
+
 export interface LayoutProps {
 	title?: string;
 }
@@ -21,5 +22,6 @@ const { title } = Astro.props;
 	</head>
 	<body class="LayoutStyle">
 		<slot />
+		<script type="module" is:inline src="/src/scripts/main.js"></script>
 	</body>
 </html>

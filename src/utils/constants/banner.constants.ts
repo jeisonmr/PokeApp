@@ -1,0 +1,21 @@
+export const typeMapping: Record<string, string> = {
+  // Inglés → Español
+  "grass": "planta",
+  "fire": "fuego",
+  "water": "agua",
+  "electric": "electrico",
+  "ice": "hielo",
+  "fighting": "lucha",
+  "poison": "veneno",
+  "ground": "tierra",
+  "flying": "volador",
+  "psychic": "psiquico",
+  "bug": "bicho",
+  "rock": "roca",
+  "ghost": "fantasma",
+  "dragon": "dragon",
+  "dark": "siniestro",
+  "steel": "acero",
+  "fairy": "hada",
+  "normal": "normal",
+};

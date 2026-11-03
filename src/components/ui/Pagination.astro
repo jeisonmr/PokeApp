@@ -1,23 +1,20 @@
 ---
-import Title from "@/@core/components/ui/Title.astro";
+import Title from "@/@core/components/Title/Title.astro";
 import Card from "../ui/Card.astro";
-import SearchFilter from "@core/components/ui/SearchFilter.astro";
+import SearchFilter from "@core/components/SearchFilter/SearchFilter.astro";
 import type { PokemonProps } from "@/models/types/pokemon";
 import { getIdPokemon } from "@/services/api.services";
 
-
 const { page } = Astro.props;
-
 
 const pokemonsAll = page?.data ? await Promise.all(
       page.data.map(async (pokemon: PokemonProps) => {
 
         const id = pokemon.id;
         const data = await getIdPokemon(id);
-        console.log(data);
         return {
           name: pokemon.name,
-          // url: data.sprites?.other?.home?.front_default
+          url: data.sprites?.other?.home?.front_default
         };
       }),
     )
@@ -26,10 +23,11 @@ const pokemonsAll = page?.data ? await Promise.all(
 <!-- sprites.other.home.front_default, -->
 <section class="flex flex-col gap-2 h-screen">
   <Title
-    title="encuentra tu Pokémon"
     component="h2"
     className="movil:text-txt-title3 desktop:text-txt-title2 font-secondary py-2"
-  />
+  >
+    Encuentra tu Pokémon
+  </Title>
 
   <SearchFilter
     searchText

@@ -1,0 +1,86 @@
+---
+import Button from "@/@core/components/Button/Button.astro";
+import ImagesResponsive from "@/@core/components/ImagesResponsive/ImagesResponsive.astro";
+import Title from "@/@core/components/Title/Title.astro";
+import { Image } from "astro:assets";
+import { normalizeType } from "../../utils/banner/banner";
+
+export interface BannerUIProps{
+  name?: string;
+  image?: string;
+  type?: string;
+}
+
+const { name, image, type } = Astro.props;
+// console.log(type);
+
+const types = type.map(({type}:any) =>{
+  return type.name
+})
+
+// console.log(types);
+
+// Normalizar el tipo a español
+const normalizedType = type 
+? normalizeType(types) 
+: "normal";
+
+// Importar dinámicamente las imágenes según el tipo
+const bgDesktop = `/images/banners_desktop/${normalizedType[0]}.png`;
+const bgMobile = `/images/banners_mobile/${normalizedType[0]}.png`;
+const iconMedal = Array.of(...normalizedType);
+---
+<article class="h-full">
+  {
+    (bgDesktop || bgMobile) && (
+      <ImagesResponsive
+        src={{ mobile: bgMobile, desktop: bgDesktop }}
+        alt={`Pokémon tipo ${normalizedType}`}
+        wrapperClass="absolute"
+      />
+    )
+  }
+  <div class="w-full h-full flex movil:flex-col-reverse desktop:flex-row justify-center movil:px-3 desktop:px-12">
+    <div class="movil:h-1/2 desktop:h-[60vh] movil:w-full desktop:w-1/2 relative z-10 flex flex-col justify-center gap-3">
+      <Title
+        component="h1"
+        className="capitalize text-4xl font-pokemon-300 text-txt-title0 text-white"
+      >
+        {name}
+      </Title>
+
+      {
+        iconMedal.length > 0 && (
+          <div class="flex gap-1">
+            {iconMedal.map((medal) => (
+              <Image
+                src={`/icons/medals/${medal}.png`}
+                alt={`Icono de tipo ${medal}`}
+                width={20}
+                height={20}
+                class="w-4 h-4"
+              />
+            ))}
+          </div>
+        )
+      }
+  
+      <Button variant="primary" className="font-primary-600 text-txt-title3">
+        Más detalles
+      </Button>
+    </div>
+  
+    <div class="movil:h-auto 1/2op:h-[60vh] movil:w-full desktop:w-1/2 relative z-10 flex items-center justify-center">
+      {image && (
+        <Image
+          loading="lazy"
+          src={image}
+          alt={name || "Pokemon"}
+          width={200}
+          height={200}
+          class="pokemon_image object-fill movil:w-fit desktop:w-[70%] h-auto aspect-square"
+        />
+      )}
+    </div>
+  </div>
+</article>

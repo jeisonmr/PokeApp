@@ -12,7 +12,7 @@
 
   /* Estilos del Layout | Plantilla general */
   .LayoutStyle{
-    @apply bg-black-20;
+    @apply bg-black;
   }
 
   .container {
