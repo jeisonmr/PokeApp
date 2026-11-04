@@ -7,7 +7,6 @@ export interface CardProps {
   };
   icon?: string;
   tag?: {
-    icon: string;
     bgTag: string;
   };
 }

@@ -1,35 +1,44 @@
 ---
 import { Image } from "astro:assets";
 import IconArrow from "@base/public/icons/arrow.png";
-import ImageHalo from "@base/public/images/halo.png";
-import { typePokemon } from "@/models/themes/buttonThemes";
+import { cardThemes } from "@/models/themes/cardThemes";
 import Typographi from "@/@core/components/Typographi/Typographi.astro";
+import Icon from "@/@core/components/Icon/Icon.astro";
 
 interface CardProps {
   name?: string;
   image?: string;
   customCard?: string;
   number?: number;
+  typeEn?: string;
 }
 
-let { name, image, customCard, number } = Astro.props as CardProps;
-const { border, 
-        bgCard,
-        tag } = typePokemon[customCard![0]] as CardProps;
+let { name, image, customCard, number, typeEn } = Astro.props as CardProps;
+
+const { border, bgCard, tag } = cardThemes[customCard![0]] as CardProps;
+
+const colorHalo = `var(--color-type-${typeEn?.[0]}-20)`;
 ---
 
 <article
   class={`
+    h-full
+    border-2
     ${bgCard} 
     ${border.borderColor}
     ${border.hoverBorderColor} 
-    flex flex-col items-center justify-center gap-2
-    p-2 rounded-lg
+    flex flex-col items-center justify-center desktop:gap-2
+    p-1 desktop:p-2 rounded-lg duration-300
   `}
   transition:name="hero"
 >
 <header class="flex justify-between w-full">
-  <p class="w-full text-txt-description3 font-primary-300">N.°{number}</p>
+  <Typographi 
+    component="span" 
+    className="flex items-center w-full text-txt-description3 font-primary-300"
+  >
+    #{number}
+  </Typographi>
   <Image
     src={IconArrow}
     alt={`Ir a la interna de ${name}`}
@@ -40,42 +49,44 @@ const { border,
 </header>
   {
     image && (
-      <div class="relative w-full h-full flex items-center justify-center">
-        <Image
-          src={ImageHalo}
-          alt=""
-          width={200}
-          height={200}
-          aria-hidden="true"
-          class="w-20 h-auto absolute top-1/2 left-[50%] -translate-x-1/2 -translate-y-1/2 z-10"
-        />
+      <div 
+        class={`${colorHalo} relative w-full h-full flex items-center justify-center`}
+        style={`--pokemon-halo: ${colorHalo}`}
+      >
+        <svg class="movil:w-15 desktop:w-23 h-auto absolute top-1/2 left-[50%] -translate-x-1/2 -translate-y-1/2 z-10" width="240" height="158" viewBox="0 0 240 158" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path opacity="0.07" d="M239.5 120C239.5 185.998 185.998 239.5 120 239.5C54.002 239.5 0.5 185.998 0.5 120C0.5 54.002 54.002 0.5 120 0.5C185.998 0.5 239.5 54.002 239.5 120Z" stroke="currentColor"/>
+        </svg>
         <Image
           src={image}
           alt={"Foto"}
-          width={142}
-          height={114}
+          width={10}
+          height={10}
           aria-hidden="true"
           class="w-[14.2rem] h-auto object-contain aspect-square relative z-20"
         />
       </div>
     )
   }
-  <div class="w-full">
-    <h3 class="text-txt-title4 font-primary-600">
+  <footer class="w-full flex flex-col gap-1 flex-1">
+    <h3 class="text-txt-title3 font-primary-600 capitalize">
       {name}
     </h3>
-    <div class="flex gap-0.5">
+    <div class="flex flex-wrap gap-1">
       {
         customCard?.map((tag:string) => (
           <Typographi 
             component="span"
-            className={`text-txt-description4 font-primary-300 py-[0.7rem] px-1 rounded-xs 
-            ${typePokemon![tag]?.tag.bgTag}`}
+            className={`flex w-fit gap-0.5 text-txt-description3 font-primary-300 py-[0.7rem] px-1 rounded-xs capitalize 
+            ${cardThemes![tag]?.tag.bgTag}`}
           >
-              {tag}
+            <Icon 
+              icon={tag} 
+              className="w-[1.7rem] h-auto"
+            />
+            {tag}
           </Typographi>
-        ) )
+        ))
       }
     </div>
-  </div>
+  </footer>
 </article>

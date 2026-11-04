@@ -18,4 +18,25 @@
   .container {
     @apply mx-auto px-4;
   }
+
+  /* Utilidades generales Theme.css */
+  .bg-linear-normal{    @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-normal-30)] via-50%   to-[var(--color-black-10)] to-90%;}
+  .bg-linear-grass{     @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-grass-30)] via-50%    to-[var(--color-black-10)] to-90%;}
+  .bg-linear-fire{      @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-fire-30)] via-50%     to-[var(--color-black-10)] to-90%;}
+  .bg-linear-water{     @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-water-30)] via-50%    to-[var(--color-black-10)] to-90%;}
+  .bg-linear-electric{  @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-electric-30)] via-50% to-[var(--color-black-10)] to-90%;}
+  .bg-linear-ice{       @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-ice-30)] via-50%      to-[var(--color-black-10)] to-90%;}
+  .bg-linear-fighting{  @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-fighting-30)] via-50% to-[var(--color-black-10)] to-90%;}
+  .bg-linear-poison{    @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-poison-30)] via-50%   to-[var(--color-black-10)] to-90%;}
+  .bg-linear-ground{    @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-ground-30)] via-50%   to-[var(--color-black-10)] to-90%;}
+  .bg-linear-flying{    @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-flying-30)] via-50%   to-[var(--color-black-10)] to-90%;}
+  .bg-linear-psychic{   @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-psychic-30)] via-50%  to-[var(--color-black-10)] to-90%;}
+  .bg-linear-bug{       @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-bug-30)] via-50%      to-[var(--color-black-10)] to-90%;}
+  .bg-linear-rock{      @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-rock-30)] via-50%     to-[var(--color-black-10)] to-90%;}
+  .bg-linear-ghost{     @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-ghost-30)] via-50%    to-[var(--color-black-10)] to-90%;}
+  .bg-linear-dragon{    @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-dragon-30)] via-50%   to-[var(--color-black-10)] to-90%;}
+  .bg-linear-dark{      @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-dark-30)] via-50%     to-[var(--color-black-10)] to-90%;}
+  .bg-linear-steel{     @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-steel-30)] via-50%    to-[var(--color-black-10)] to-90%;}
+  .bg-linear-fairy{     @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-fairy-30)] via-50%    to-[var(--color-black-10)] to-90%;}
+
 }

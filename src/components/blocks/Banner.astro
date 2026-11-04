@@ -19,7 +19,7 @@ const pokemonFromBanner = await Promise.all(
       image: pokemon.sprites.other?.dream_world.front_default,
       type: primaryType,
       number: pokemon.id,
-      description: species.flavor_text_entries?.[39]?.flavor_text || "",
+      description: species.flavor_text_entries.find(({language}: { language: { name: string } }) => language.name === "es")?.flavor_text
     };
   }),
 );

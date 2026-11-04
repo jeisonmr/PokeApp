@@ -9,11 +9,11 @@ import type { GetStaticPathsOptions } from "astro";
 import type { PokemonAllProps } from "@/models/types/pokemonAll";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  const listPokemons = await getPokemonLimit(2);
+  const listPokemons = await getPokemonLimit(9);
   const { results } = listPokemons as PokemonAllProps;
 
   return paginate(results, {
-    pageSize: 6,
+    pageSize: 9,
   });
 }
 

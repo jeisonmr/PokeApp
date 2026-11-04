@@ -1,17 +1,10 @@
 ---
 import Layout from '../../layout/Layout.astro';
 import { getPokemonLimit } from '@/services/api.services';
+import Typoografi from '@core/components/Typographi/Typographi.astro';
 
 export async function getStaticPaths() {
   const response = await getPokemonLimit(10);
-
-  console.log('Respuesta del servicio:', response);
-
-  // if (!response || !Array.isArray(response.results)) {
-  //   throw new Error(
-  //     'getPokemonLimit no devolvió un objeto con un arreglo results'
-  //   );
-  // }
 
   return response.results.map((pokemon: { name: string; url: string }) => ({
     params: {
@@ -40,9 +33,9 @@ const previousUrl = currentPage <= 1
 
 <Layout title={`Pokemon ${name}`}>
   <a href={previousUrl}>
-    <h1 class="text-center text-6xl font-bold">
-      Pokemon {name}
-    </h1>
+    <Typoografi component="h1" className="text-center text-6xl font-bold">
+      {name}
+    </Typoografi>
 
     <img
       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`}

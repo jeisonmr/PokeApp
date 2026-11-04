@@ -5,7 +5,6 @@ import type { PokemonProps } from "@/models/types/pokemon";
 import Typographi from "@/@core/components/Typographi/Typographi.astro";
 import { getNamePokemon } from "@/services/api.services";
 import { normalizeType } from "@/utils/banner/banner";
-import { array } from "astro:schema";
 
 const { page } = Astro.props;
 
@@ -16,8 +15,9 @@ const pokemonsAll = page?.data ? await Promise.all(
 
         return {
           name: data.name,
-          image: data.sprites?.other?.home?.front_default,
+          image: data.sprites?.versions?.['generation-viii']?.['sword-shield']?.front_default,
           type: normalizeType(type),
+          typeEn: type,
           number: data.id,
         };
       }),
@@ -46,13 +46,19 @@ const pokemonsAll = page?.data ? await Promise.all(
 	 {pokemonsAll.length} Pókemon <span class="tex-white">encontrados</span>
 	</h3>
 
-  <ul class="grid movil:grid-cols-2 desktop:grid-cols-3 gap-2 items-center justify-center">
+  <ul class="grid movil:grid-cols-2 desktop:grid-cols-3 movil:gap-0.5 desktop:gap-1.5 items-center justify-center">
     {
-      pokemonsAll.map(({ name, image, type, number }) => {
+      pokemonsAll.map(({ name, image, type, number, typeEn }) => {
         return (
-          <li>
+          <li class="h-full last:max-desktop:col-span-2">
             <a href={`/pokemon/${name}?pages=${page?.currentPage}`}>
-              <Card name={name} image={image} customCard={type} number={number} />
+              <Card 
+                name={name} 
+                image={image} 
+                customCard={type} 
+                number={number} 
+                typeEn={typeEn}
+              />
             </a>
           </li>
         );

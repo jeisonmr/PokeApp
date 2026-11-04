@@ -20,96 +20,96 @@
   --color-gold-90: #665A00;
   --color-gold-100: #4D4500;
 
-  --color-type-normal: #A8A77A;
+  --color-type-normal: #A8A77A; /*Normal*/
   --color-type-normal-10: #CFCFB6;
   --color-type-normal-20: #A8A77A2B;
+  --color-type-normal-30: #2D2E25;
 
-  --color-type-grass: #76C94B;
+  --color-type-grass: #76C94B; /*Planta*/
   --color-type-grass-10: #B4E19C;
   --color-type-grass-20: #76C94B2B;
+  --color-type-grass-30: #23351C;
 
-  --color-type-fire: #EE8130;
+  --color-type-fire: #EE8130; /*Fuego*/
   --color-type-fire-10: #F6BA8D;
   --color-type-fire-20: #EE81302B;
+  --color-type-fire-30: #3B2716;
 
-  --color-type-water: #6390F0;
+  --color-type-water: #6390F0; /*Agua*/
   --color-type-water-10: #A9C2F7;
   --color-type-water-20: #6390F02B;
+  --color-type-water-30: #1F2A3D;
 
-  --color-type-electric: #F7D02C;
+  --color-type-electric: #F7D02C; /*Eléctrico*/
   --color-type-electric-10: #FBE58B;
   --color-type-electric-20: #F7D02C2B;
+  --color-type-electric-30: #3D3616;
 
-  --color-type-ice: #96D9D6;
+  --color-type-ice: #96D9D6; /*Hielo*/
   --color-type-ice-10: #C5EAE8;
   --color-type-ice-20: #96D9D62B;
+  --color-type-ice-30: #293838;
 
-  --color-type-fighting: #C22E28;
+  --color-type-fighting: #C22E28; /*Lucha*/
   --color-type-fighting-10: #DD8C89;
   --color-type-fighting-20: #C22E282B;
+  --color-type-fighting-30: #321615;
 
-  --color-type-poison: #A33EA1;
+  --color-type-poison: #A33EA1; /*Veneno*/
   --color-type-poison-10: #CC95CB;
   --color-type-poison-20: #A33EA12B;
+  --color-type-poison-30: #2C192D;
 
-  --color-type-ground: #E2BF65;
+  --color-type-ground: #E2BF65; /*Tierra*/
   --color-type-ground-10: #EFDCAA;
   --color-type-ground-20: #E2BF652B;
+  --color-type-ground-30: #393321;
 
-  --color-type-flying: #A98FF3;
+  --color-type-flying: #A98FF3; /*Volador*/
   --color-type-flying-10: #D0C1F8;
   --color-type-flying-20: #A98FF32B;
+  --color-type-flying-30: #2D293D;
 
-  --color-type-psychic: #F95587;
+  --color-type-psychic: #F95587; /*Psíquico*/
   --color-type-psychic-10: #FCA1BD;
   --color-type-psychic-20: #F955872B;
+  --color-type-psychic-30: #3D1E28;
 
-  --color-type-bug: #A6B91A;
+  --color-type-bug: #A6B91A; /*Bicho*/
   --color-type-bug-10: #CED881;
   --color-type-bug-20: #A6B91A2B;
+  --color-type-bug-30: #2D3212;
 
-  --color-type-rock: #B6A136;
+  --color-type-rock: #B6A136; /*Roca*/
   --color-type-rock-10: #D7CB90;
   --color-type-rock-20: #B6A1362B;
+  --color-type-rock-30: #302D18;
 
-  --color-type-ghost: #735797;
+  --color-type-ghost: #735797; /*Fantasma*/
   --color-type-ghost-10: #B2A3C6;
   --color-type-ghost-20: #7357972B;
+  --color-type-ghost-30: #221E2B;
 
-  --color-type-dragon: #6F35FC;
+  --color-type-dragon: #6F35FC; /*Dragón*/
   --color-type-dragon-10: #B090FD;
   --color-type-dragon-20: #6F35FC2B;
+  --color-type-dragon-30: #22173F;
 
-  --color-type-dark: #705746;
+  --color-type-dark: #705746; /*Siniestro*/
   --color-type-dark-10: #B0A399;
   --color-type-dark-20: #7057462B;
+  --color-type-dark-30: #221E1B;
 
-  --color-type-steel: #B7B7CE;
+  --color-type-steel: #B7B7CE; /*Acero*/
   --color-type-steel-10: #D7D7E4;
   --color-type-steel-20: #B7B7CE2B;
+  --color-type-steel-30: #303136;
 
-  --color-type-fairy: #D685AD;
+  --color-type-fairy: #D685AD; /*Hada*/
   --color-type-fairy-10: #E8BCD2;
   --color-type-fairy-20: #D685AD2B;
+  --color-type-fairy-30: #36272F;
 
-  --gradient-type-normal:   linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-normal-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-grass:    linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-grass-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-fire:     linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-fire-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-water:    linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-water-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-electric: linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-electric-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-ice:      linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-ice-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-fighting: linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-fighting-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-poison:   linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-poison-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-ground:   linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-ground-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-flying:   linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-flying-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-psychic:  linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-psychic-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-bug:      linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-bug-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-rock:     linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-rock-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-ghost:    linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-ghost-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-dragon:   linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-dragon-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-dark:     linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-dark-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-steel:    linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-steel-20) 60%, var(--color-black-20) 100%);
-  --gradient-type-fairy:    linear-gradient(180deg, var(--color-black-20) 0%, var(--color-type-fairy-20) 60%, var(--color-black-20) 100%);
 
   --breakpoint-movil: 320px;
   --breakpoint-tablet: 768px;
@@ -150,16 +150,4 @@
   --radius-lg: 20px;
   --radius-xl: 24px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 

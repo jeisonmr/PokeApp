@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+
+export interface IconProps {
+  icon?: "acero" | "agua" | "bicho" | "dragon" | "eléctrico" | "fantasma" | "fuego" | "hada" | "hielo" | "lucha" | "normal" | "planta" | "psíquico" | "roca" | "siniestro" | "tierra" | "veneno" | "volador";
+  className?: string;
+}
+
+const { icon, className } = Astro.props;
+
+const iconType = {
+  acero: {url:"/icons/types/acero.png", width: 10, height: 10, alt:""},
+  agua: {url:"/icons/types/agua.png", width: 10, height: 10, alt:""},
+  bicho: {url:"/icons/types/bicho.png", width: 10, height: 10, alt:""},
+  dragon: {url:"/icons/types/dragon.png", width: 10, height: 10, alt:""},
+  eléctrico: {url:"/icons/types/electrico.png", width: 10, height: 10, alt:""},
+  fantasma: {url:"/icons/types/fantasma.png", width: 10, height: 10, alt:""},
+  fuego: {url:"/icons/types/fuego.png", width: 10, height: 10, alt:""},
+  hada: {url:"/icons/types/hada.png", width: 10, height: 10, alt:""},
+  hielo: {url:"/icons/types/hielo.png", width: 10, height: 10, alt:""},
+  lucha: {url:"/icons/types/lucha.png", width: 10, height: 10, alt:""},
+  normal: {url:"/icons/types/normal.png", width: 10, height: 10, alt:""},
+  planta: {url:"/icons/types/planta.png", width: 10, height: 10, alt:""},
+  psíquico: {url:"/icons/types/psiquico.png", width: 10, height: 10, alt:""},
+  roca: {url:"/icons/types/roca.png", width: 10, height: 10, alt:""},
+  siniestro: {url:"/icons/types/siniestro.png", width: 10, height: 10, alt:""},
+  tierra: {url:"/icons/types/tierra.png", width: 10, height: 10, alt:""},
+  veneno: {url:"/icons/types/veneno.png", width: 10, height: 10, alt:""},
+  volador: {url:"/icons/types/volador.png", width: 10, height: 10, alt:""},
+};
+---
+
+{
+  iconType[icon as keyof typeof iconType] && (
+    <Image 
+      src={iconType[icon].url} 
+      alt={iconType[icon].alt} 
+      width={iconType[icon].width}
+      height={iconType[icon].height}
+      class={className} 
+      loading="lazy"
+      aria-hidden="true"
+    />
+  )
+}
