@@ -7,11 +7,11 @@ export async function getStaticPaths() {
 
   console.log('Respuesta del servicio:', response);
 
-  if (!response || !Array.isArray(response.results)) {
-    throw new Error(
-      'getPokemonLimit no devolvió un objeto con un arreglo results'
-    );
-  }
+  // if (!response || !Array.isArray(response.results)) {
+  //   throw new Error(
+  //     'getPokemonLimit no devolvió un objeto con un arreglo results'
+  //   );
+  // }
 
   return response.results.map((pokemon: { name: string; url: string }) => ({
     params: {

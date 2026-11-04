@@ -78,8 +78,6 @@ export const getPokemonGeneration = async (generation:string):Promise<PokemonAll
   return res;
 }
 
-console.log("API:", ApiPokemonSpecies);
-
 /**
  * Esta función retorna la información de un Pokemon específico por su nombre o ID.
  * @param pokemon Nombre o ID del Pokemon.
