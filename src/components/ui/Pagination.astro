@@ -13,7 +13,7 @@ const pokemonsAll = page?.data ? await Promise.all(
       page.data.map(async (pokemon: PokemonProps) => {
         const data = await getNamePokemon(pokemon.name);
         const type = data.types.map((type: any) => type.type.name);
-        console.log(type);
+
         return {
           name: data.name,
           image: data.sprites?.other?.home?.front_default,
@@ -23,8 +23,6 @@ const pokemonsAll = page?.data ? await Promise.all(
       }),
     )
   : [];
-
-  console.log(pokemonsAll);
 ---
 <section class="flex flex-col gap-2 h-screen">
   <Typographi
