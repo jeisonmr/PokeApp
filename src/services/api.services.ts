@@ -26,7 +26,7 @@ export const getAllPokemons = async():Promise<PokemonAllProps> =>{
  * @param code ID del Pokemon.
  * @returns Promise con la información del Pokemon.
  */
-export const getIdPokemon = async (id?:number): Promise<PokemonProps> =>{
+export const getIdPokemon = async (id?:any): Promise<PokemonProps> =>{
   const api = `${ApiPokemon}${id}`;
   const data = await fetch(api);
   const res = await data.json();

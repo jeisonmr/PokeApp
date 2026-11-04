@@ -41,11 +41,7 @@ const iconMedal = Array.of(...normalizedType);
         alt={`Pokémon tipo ${normalizedType}`}
         wrapperClass="absolute"
       />
-
-      <div class="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none bg-gradient-to-t 
-        from-black via-black/40 to-transparent 
-        [clip-path:ellipse(75%_100%_at_50%_100%)]"
-      ></div>
+      <div class="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none bg-linear-to-t from-black via-black/40 to-transparent [clip-path:ellipse(75%_100%_at_50%_100%)]"></div>
     )
   }
   <div class="w-full h-full flex movil:flex-col-reverse desktop:flex-row justify-center movil:px-3 desktop:px-12">
@@ -78,6 +74,12 @@ const iconMedal = Array.of(...normalizedType);
                 <label for="" class="text-white text-xs font-primary-600 uppercase">{medal}</label>
               </picture>
             ))}
+            <Typographi 
+              component="span" 
+              className="font-pokemon-600 text-txt-title1 ml-1.5"
+            >
+              #{number}
+            </Typographi>
           </div>
         )
       }

@@ -202,7 +202,7 @@ export const typePokemon: Record<string, CardProps> = {
     },
     tag: {
       icon: 'icon-[mdi--skull]',
-      bgTag: 'bg-[#A33EA1]',
+      bgTag: 'bg-[#A33EA1]/50',
     },
   },
   "volador": {

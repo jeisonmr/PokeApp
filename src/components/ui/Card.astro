@@ -3,20 +3,21 @@ import { Image } from "astro:assets";
 import IconArrow from "@base/public/icons/arrow.png";
 import ImageHalo from "@base/public/images/halo.png";
 import { typePokemon } from "@/models/themes/buttonThemes";
+import Typographi from "@/@core/components/Typographi/Typographi.astro";
 
 interface CardProps {
   name?: string;
-  url?: string;
-  customCard?: CardProps;
+  image?: string;
+  customCard?: string;
+  number?: number;
 }
 
-let { name, url, customCard } = Astro.props as CardProps;
-customCard = "planta";
-const { type, 
-        border, 
-        bgCard, 
-        tag } = typePokemon[customCard] as CardProps;
+let { name, image, customCard, number } = Astro.props as CardProps;
+const { border, 
+        bgCard,
+        tag } = typePokemon[customCard![0]] as CardProps;
 
+console.log(name, image, customCard, number, tag);
 ---
 
 <article
@@ -25,12 +26,12 @@ const { type,
     ${border.borderColor}
     ${border.hoverBorderColor} 
     flex flex-col items-center justify-center gap-2
-    px-1 py-2 rounded-lg
+    p-2 rounded-lg
   `}
   transition:name="hero"
 >
 <header class="flex justify-between w-full">
-  <p class="w-full text-txt-description3 font-primary-300">{'N.°001'}</p>
+  <p class="w-full text-txt-description3 font-primary-300">N.°{number}</p>
   <Image
     src={IconArrow}
     alt={`Ir a la interna de ${name}`}
@@ -40,7 +41,7 @@ const { type,
   />
 </header>
   {
-    url && (
+    image && (
       <div class="relative w-full h-full flex items-center justify-center">
         <Image
           src={ImageHalo}
@@ -51,7 +52,7 @@ const { type,
           class="w-20 h-auto absolute top-1/2 left-[50%] -translate-x-1/2 -translate-y-1/2 z-10"
         />
         <Image
-          src={url}
+          src={image}
           alt={"Foto"}
           width={142}
           height={114}
@@ -65,6 +66,18 @@ const { type,
     <h3 class="text-txt-title4 font-primary-600">
       {name}
     </h3>
-    <span class="text-txt-description4 font-primary-300">Planta</span>
+    <div class="flex gap-0.5">
+      {
+        customCard?.map((tag:string) => (
+          <Typographi 
+            component="span"
+            className={`text-txt-description4 font-primary-300 py-[0.7rem] px-1 rounded-xs 
+            ${typePokemon![tag]?.tag.bgTag}`}
+          >
+              {tag}
+          </Typographi>
+        ) )
+      }
+    </div>
   </div>
 </article>

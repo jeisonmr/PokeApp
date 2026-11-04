@@ -13,7 +13,7 @@ const pokemonFromBanner = await Promise.all(
     const pokemon = await getIdPokemon(id);
     const species = await getSpecies(id);
     const primaryType: any[] | string  = pokemon.types || "normal";
-    console.log(species);
+
     return {
       name: pokemon.name,
       image: pokemon.sprites.other?.dream_world.front_default,

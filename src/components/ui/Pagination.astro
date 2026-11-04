@@ -1,27 +1,31 @@
 ---
-import Title from "@/@core/components/Title/Title.astro";
 import Card from "../ui/Card.astro";
 import SearchFilter from "@core/components/SearchFilter/SearchFilter.astro";
 import type { PokemonProps } from "@/models/types/pokemon";
-import { getIdPokemon } from "@/services/api.services";
 import Typographi from "@/@core/components/Typographi/Typographi.astro";
+import { getNamePokemon } from "@/services/api.services";
+import { normalizeType } from "@/utils/banner/banner";
+import { array } from "astro:schema";
 
 const { page } = Astro.props;
 
 const pokemonsAll = page?.data ? await Promise.all(
       page.data.map(async (pokemon: PokemonProps) => {
-
-        const id = pokemon.id;
-        const data = await getIdPokemon(id);
+        const data = await getNamePokemon(pokemon.name);
+        const type = data.types.map((type: any) => type.type.name);
+        console.log(type);
         return {
-          name: pokemon.name,
-          url: data.sprites?.other?.home?.front_default
+          name: data.name,
+          image: data.sprites?.other?.home?.front_default,
+          type: normalizeType(type),
+          number: data.id,
         };
       }),
     )
   : [];
+
+  console.log(pokemonsAll);
 ---
-<!-- sprites.other.home.front_default, -->
 <section class="flex flex-col gap-2 h-screen">
   <Typographi
     component="h2"
@@ -46,11 +50,11 @@ const pokemonsAll = page?.data ? await Promise.all(
 
   <ul class="grid movil:grid-cols-2 desktop:grid-cols-3 gap-2 items-center justify-center">
     {
-      pokemonsAll.map(({ name, url }) => {
+      pokemonsAll.map(({ name, image, type, number }) => {
         return (
           <li>
             <a href={`/pokemon/${name}?pages=${page?.currentPage}`}>
-              <Card name={name} url={url} customCard={'planta'} />
+              <Card name={name} image={image} customCard={type} number={number} />
             </a>
           </li>
         );
