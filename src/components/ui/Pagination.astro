@@ -37,9 +37,6 @@ const pokemonsAll = page?.data ? await Promise.all(
     selectType
     selectGeneration
     placeholder="Buscar tu Pokémon..."
-    title="Búsqueda Instantánea"
-    titleSelectType="Tipo"
-    titleSelectGeneration="Generación"
   />
 
 	<h3 class="text-txt-description2 font-primary-300">
@@ -72,3 +69,7 @@ const pokemonsAll = page?.data ? await Promise.all(
     {page?.url?.next && <a href={page.url.next}>Siguiente</a>}
   </nav>
 </section>
+
+<script define:vars={{ pokemonsAll }}>
+  window.pokemonsData = pokemonsAll;
+</script>

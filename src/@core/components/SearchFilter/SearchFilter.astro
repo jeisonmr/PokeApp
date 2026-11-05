@@ -1,5 +1,7 @@
 ---
+
 import Typographi from "../Typographi/Typographi.astro";
+import {types, generations} from "@/data/data.json";
 
 export interface SearchProps {
   placeholder?: string;
@@ -13,26 +15,18 @@ export interface SearchProps {
 
 const {
   placeholder = "buscar",
-  title,
-  titleSelectType,
-  titleSelectGeneration,
   searchText,
   selectType,
   selectGeneration,
 } = Astro.props;
 ---
 
-<form class="flex flex-col gap-2 h-fill">
+<form class="SearchFilter flex flex-col gap-2 h-fill">
   <div class="w-full flex movil:flex-col desktop:flex-row gap-1.5">
     <div class="movil:w-full desktop:w-[60%] flex flex-col gap-0.5">
       {
         searchText && (
-          <Typographi 
-            title={title} 
-            component="label"
-            className="font-primary-600 text-txt-description3 uppercase"
-          />
-          <input type="text" placeholder={placeholder} />
+          <input type="text" id="searchInput" placeholder={placeholder} />
         )
       }
     </div>
@@ -40,13 +34,13 @@ const {
       <div class="w-[50%] flex flex-col gap-0.5">
         {
           selectType && (
-            <Typographi 
-              title="Tipo" 
-              component="label"
-              className="font-primary-600 text-txt-description3 uppercase"
-            />
-            <select>
-              <option value=""></option>
+            <select id="typeSelect" class="text-txt-description3">
+              <option value="">Tipo</option>
+              {
+                types.map((type: string):string[] => (
+                  <option value={type}>{type}</option>
+                ))
+              }
             </select>
           )
         }
@@ -54,13 +48,13 @@ const {
       <div class="w-[50%] flex flex-col gap-0.5">
         {
           selectGeneration && (
-            <Typographi 
-              title={titleSelectGeneration} 
-              component="label"
-              className="font-primary-600 text-txt-description3 uppercase"
-            />
-            <select>
-              <option value=""></option>
+            <select id="generationSelect" class="text-txt-description3">
+              <option value="">Generación</option>
+              {
+                generations.map((generation: { value: number; label: string }) => (
+                  <option value={generation.value}>{generation.label}</option>
+                ))
+              }
             </select>
           )
         }
@@ -68,9 +62,9 @@ const {
     </div>
   </div>
   <div class="flex gap-1 items-center">
-    <span class="font-primary-300 text-txt-description3 rounded-xs px-1.5 py-0.5 bg-white/10 text-white">Generación</span>
-    <span class="font-primary-300 text-txt-description3 rounded-xs px-1.5 py-0.5 bg-white/10 text-white">Tipo</span>
-    <a href="/">
+    <span id="generationTag" class="hidden font-primary-300 text-txt-description3 rounded-xs px-1.5 py-0.5 bg-white/10 text-white">Generación</span>
+    <span id="typeTag" class="hidden font-primary-300 text-txt-description3 rounded-xs px-1.5 py-0.5 bg-white/10 text-white">Tipo</span>
+    <a id="clearFilters" href="/" class="hidden">
       <span class="font-primary-300 text-txt-description3 underline cursor-pointer text-white">
         Limpiar filtros
       </span>

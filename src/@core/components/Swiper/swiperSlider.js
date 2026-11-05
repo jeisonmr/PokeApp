@@ -2,13 +2,16 @@ import Swiper from 'swiper';
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 
 export function initSwiper() {
-
   const selector = ".swiper";
   const swiper = document.querySelector(selector);
 
   if (swiper) {
-    // TODO: Initialize swiper here
-    swiper.setAttribute("data-initialized", "true")
+    // Evitar inicializar múltiples veces
+    if (swiper.getAttribute("data-initialized") === "true") {
+      return;
+    }
+
+    swiper.setAttribute("data-initialized", "true");
     const optionsJson = swiper.getAttribute('data-options') || '{}';
     let customOptions = {};
 
@@ -22,7 +25,6 @@ export function initSwiper() {
     const prevEl = swiper.querySelector('.swiper-button-prev');
     const paginationEl = swiper.querySelector('.swiper-pagination');
 
-
     new Swiper(swiper, {
       ...customOptions,
       modules: [Navigation, Pagination, Autoplay, EffectFade],
@@ -30,7 +32,20 @@ export function initSwiper() {
   }
 }
 
-// Ejecutar cuando el DOM esté listo
+// Ejecutar cuando el DOM esté listo y también en cada navegación de página
 if (typeof window !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', initSwiper);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSwiper);
+  } else {
+    initSwiper();
+  }
+  
+  // Re-inicializar en cada navegación de Astro ClientRouter
+  document.addEventListener('astro:page-load', () => {
+    // Limpiar marcadores de inicialización previos
+    document.querySelectorAll('.swiper').forEach(swiper => {
+      swiper.removeAttribute('data-initialized');
+    });
+    initSwiper();
+  });
 }

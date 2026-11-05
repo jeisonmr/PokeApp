@@ -17,5 +17,26 @@
   1007, 1008,
   1014, 1015, 1016, 1017,
   1020, 1021, 1022, 1023, 1024
+],
+
+"types": [
+  "normal", "planta", "fuego",
+  "agua", "electrico", "hielo",
+  "lucha", "veneno", "tierra", 
+  "volador", "psiquico", "bicho", 
+  "roca", "fantasma", "dragon", 
+  "siniestro", "acero", "hada"
+],
+
+"generations":[
+  { "value": 1, "label": "Generación I"},
+  { "value": 2, "label": "Generación II" },
+  { "value": 3, "label": "Generación III" },
+  { "value": 4, "label": "Generación IV" },
+  { "value": 5, "label": "Generación V" },
+  { "value": 6, "label": "Generación VI" },
+  { "value": 7, "label": "Generación VII" },
+  { "value": 8, "label": "Generación VIII" },
+  { "value": 9, "label": "Generación IX" }
 ]
 }
