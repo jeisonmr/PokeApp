@@ -11,9 +11,10 @@ interface CardProps {
   customCard?: string;
   number?: number;
   typeEn?: string;
+  generation?: number;
 }
 
-let { name, image, customCard, number, typeEn } = Astro.props as CardProps;
+let { name, image, customCard, number, typeEn, generation } = Astro.props as CardProps;
 
 const { border, bgCard, tag } = cardThemes[customCard![0]] as CardProps;
 
@@ -22,6 +23,7 @@ const colorHalo = `var(--color-type-${typeEn?.[0]}-20)`;
 
 <article
   class={`
+    CardUi
     h-full
     border-2
     ${bgCard} 
@@ -30,7 +32,6 @@ const colorHalo = `var(--color-type-${typeEn?.[0]}-20)`;
     flex flex-col items-center justify-center desktop:gap-2
     p-1 desktop:p-2 rounded-lg duration-300
   `}
-  transition:name="hero"
 >
 <header class="flex justify-between w-full">
   <Typographi 

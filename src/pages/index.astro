@@ -1,0 +1,101 @@
+---
+import Banner from "@/components/blocks/Banner.astro";
+import Nav from "@/components/ui/Nav.astro";
+import Layout from "@/layout/Layout.astro";
+import { getPokemonLimit, getSpecies } from "@/services/api.services";
+import Typographi from "@/@core/components/Typographi/Typographi.astro";
+import SearchFilter from "@/@core/components/SearchFilter/SearchFilter.astro";
+import Card from "@/components/ui/Card.astro";
+import { normalizeType } from "@/utils/banner/banner";
+import { getNamePokemon } from "@/services/api.services";
+import type { PokemonProps } from "@/models/types/pokemon";
+import type { PokemonDetails } from "@/models/types/pokemonAll";
+import { COUNT_POKEMONS } from "@/utils/constants/services.constans";
+
+export async function getStaticPaths() {
+  const pokemonsAll = await getPokemonLimit(COUNT_POKEMONS);
+
+  return pokemonsAll.results.map((pokemon) => ({
+    params: { page: pokemon.name },
+    props: { pokemon: pokemonsAll },
+  }));
+}
+
+const { pokemon } = Astro.props;
+
+const pokemonResults = await getPokemonLimit(COUNT_POKEMONS);
+const pokemonsAll: PokemonDetails[] = await Promise.all(
+      pokemonResults.results.map(async (pokemon) => {
+        const data = await getNamePokemon(pokemon.name);
+        const type = data.types.map((type: any) => type.type.name);
+        
+        // Obtener generación desde la API de species
+        const speciesData: any = await getSpecies(pokemon.name);
+        const generation = speciesData.generation?.name;
+
+        return {
+          name: data.name,
+          image: data.sprites?.versions?.['generation-viii']?.['brilliant-diamond-shining-pearl']?.front_default
+          || data.sprites?.versions?.['generation-viii']?.['sword-shield']?.front_default
+          || data.sprites?.versions?.['generation-viii']?.['legends-arceus']?.front_default,
+          type: normalizeType(type),
+          typeEn: type,
+          number: data.id,
+          generation: generation,
+        };
+      }),
+    ) 
+---
+
+<Layout title={"Pokemon SSG"}>
+  <header>
+    <Nav />
+  </header>
+  <Banner />
+  <div class="block-padding-big-x h-full">
+    <section class="flex flex-col gap-2 h-screen">
+      <Typographi
+        component="h2"
+        className="movil:text-txt-title3 desktop:text-txt-title2 font-primary-600 pt-2.5 desktop:pt-5"
+      >
+        Encuentra tu Pokémon
+      </Typographi>
+
+      <SearchFilter
+        searchText
+        selectType
+        selectGeneration
+        placeholder="Buscar tu Pokémon..."
+      />
+
+      <h3 class="text-txt-description2 font-primary-300">
+        {pokemonsAll.length} Pókemon <span class="tex-white">encontrados</span>
+      </h3>
+
+      <ul class="grid movil:grid-cols-2 desktop:grid-cols-3 movil:gap-0.5 desktop:gap-1.5 items-center justify-center">
+        {
+          pokemonsAll.map(({ name, image, type, number, typeEn, generation }) => {
+            return (
+              <li class="h-full last:max-desktop:col-span-2">
+                <a href={`/pokemon/${name}`}>
+                  <Card
+                    name={name}
+                    image={image}
+                    customCard={type}
+                    number={number}
+                    typeEn={typeEn}
+                    generation={generation}
+                  />
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </section>
+  </div>
+</Layout>
+
+<script define:vars={{ pokemonsAll }}>
+  window.pokemonsData = pokemonsAll;
+</script>

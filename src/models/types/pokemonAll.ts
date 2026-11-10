@@ -10,6 +10,15 @@ export interface Result {
     url:  string;
 }
 
+// Pokemon con detalles completos
+export interface PokemonDetails {
+    name: string;
+    image: string | null | undefined;
+    type: string[];
+    typeEn: string[];
+    number: number;
+    generation?: string;
+}
 
 // GenerationProps
 export interface GenerationProps {

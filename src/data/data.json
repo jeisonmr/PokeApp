@@ -29,14 +29,14 @@
 ],
 
 "generations":[
-  { "value": 1, "label": "Generación I"},
-  { "value": 2, "label": "Generación II" },
-  { "value": 3, "label": "Generación III" },
-  { "value": 4, "label": "Generación IV" },
-  { "value": 5, "label": "Generación V" },
-  { "value": 6, "label": "Generación VI" },
-  { "value": 7, "label": "Generación VII" },
-  { "value": 8, "label": "Generación VIII" },
-  { "value": 9, "label": "Generación IX" }
+  { "value": "generation-i", "label": "Generación I"},
+  { "value": "generation-ii", "label": "Generación II" },
+  { "value": "generation-iii", "label": "Generación III" },
+  { "value": "generation-iv", "label": "Generación IV" },
+  { "value": "generation-v", "label": "Generación V" },
+  { "value": "generation-vi", "label": "Generación VI" },
+  { "value": "generation-vii", "label": "Generación VII" },
+  { "value": "generation-viii", "label": "Generación VIII" },
+  { "value": "generation-ix", "label": "Generación IX" }
 ]
 }

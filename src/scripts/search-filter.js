@@ -1,15 +1,41 @@
-console.log('Search filter script loaded');
+// ========================================
+// 1. VARIABLES GLOBALES
+// ========================================
+let pokemonsData = [];       // Todos los Pokémon con detalles (viene de index.astro)
+let initialized = false;      // Bandera para evitar inicializar 2 veces
+let originalCards = [];       // Guardar las tarjetas originales
 
-let pokemonsData = [];
-let initialized = false;
-
-// Función para exponer los datos de pokemons al script
-export function setPokemonsData(data) {
-  pokemonsData = data;
+// ========================================
+// 2. NORMALIZAR TIPOS (de inglés a español)
+// ========================================
+function normalizeType(type) {
+  const typeMap = {
+    'normal': 'normal',
+    'grass': 'planta',
+    'fire': 'fuego',
+    'water': 'agua',
+    'electric': 'eléctrico',
+    'ice': 'hielo',
+    'fighting': 'lucha',
+    'poison': 'veneno',
+    'ground': 'tierra',
+    'flying': 'volador',
+    'psychic': 'psíquico',
+    'bug': 'bicho',
+    'rock': 'roca',
+    'ghost': 'fantasma',
+    'dragon': 'dragón',
+    'dark': 'siniestro',
+    'steel': 'acero',
+    'fairy': 'hada'
+  };
+  return type.map(t => typeMap[t] || t);
 }
 
-// Función de filtrado
-export function filterPokemons(searchTerm, typeFilter, generationFilter) {
+// ========================================
+// 3. FUNCIÓN DE FILTRADO
+// ========================================
+function filterPokemons(searchTerm, typeFilter, generationFilter) {
   const term = searchTerm.toLowerCase().trim();
   
   return pokemonsData.filter((pokemon) => {
@@ -24,7 +50,7 @@ export function filterPokemons(searchTerm, typeFilter, generationFilter) {
       ? pokemon.type.some(t => t.toLowerCase() === typeFilter.toLowerCase())
       : true;
     
-    // Filtrar por generación (si está implementado)
+    // Filtrar por generación
     const matchesGeneration = generationFilter
       ? pokemon.generation === generationFilter
       : true;
@@ -36,12 +62,14 @@ export function filterPokemons(searchTerm, typeFilter, generationFilter) {
   });
 }
 
+// ========================================
+// 4. ACTUALIZAR VISUAL DE TAGS
+// ========================================
 function updateFilterTags(typeFilter, generationFilter) {
   const generationTag = document.getElementById('generationTag');
   const typeTag = document.getElementById('typeTag');
   const clearFilters = document.getElementById('clearFilters');
   
-  // Mostrar/ocultar tag de generación
   if (generationTag) {
     if (generationFilter) {
       generationTag.classList.remove('hidden');
@@ -51,7 +79,6 @@ function updateFilterTags(typeFilter, generationFilter) {
     }
   }
   
-  // Mostrar/ocultar tag de tipo
   if (typeTag) {
     if (typeFilter) {
       typeTag.classList.remove('hidden');
@@ -61,7 +88,6 @@ function updateFilterTags(typeFilter, generationFilter) {
     }
   }
   
-  // Mostrar/ocultar botón de limpiar filtros
   if (clearFilters) {
     if (typeFilter || generationFilter) {
       clearFilters.classList.remove('hidden');
@@ -71,6 +97,9 @@ function updateFilterTags(typeFilter, generationFilter) {
   }
 }
 
+// ========================================
+// 5. LIMPIAR TODOS LOS FILTROS
+// ========================================
 function clearAllFilters() {
   const searchInput = document.getElementById('searchInput');
   const typeSelect = document.getElementById('typeSelect');
@@ -89,6 +118,9 @@ function clearAllFilters() {
   if (generationSelect) generationSelect.dispatchEvent(changeEvent);
 }
 
+// ========================================
+// 6. FUNCIÓN PRINCIPAL (INICIALIZACIÓN)
+// ========================================
 function initSearchFilter() {
   const searchInput = document.getElementById('searchInput');
   const typeSelect = document.getElementById('typeSelect');
@@ -115,6 +147,7 @@ function initSearchFilter() {
       pokemonsData = window.pokemonsData;
       clearInterval(checkData);
       console.log('Pokemons data loaded:', pokemonsData.length);
+      console.log('Sample pokemon:', pokemonsData[0]);
     }
   }, 100);
   
@@ -193,4 +226,4 @@ if (typeof window !== 'undefined') {
   });
 }
 
-export default { setPokemonsData, filterPokemons };
+export default { filterPokemons };

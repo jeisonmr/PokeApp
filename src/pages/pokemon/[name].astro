@@ -1,10 +1,11 @@
 ---
 import Layout from '../../layout/Layout.astro';
 import { getPokemonLimit } from '@/services/api.services';
+import { COUNT_POKEMONS } from '@/utils/constants/services.constans';
 import Typoografi from '@core/components/Typographi/Typographi.astro';
 
 export async function getStaticPaths() {
-  const response = await getPokemonLimit(10);
+  const response = await getPokemonLimit(COUNT_POKEMONS);
 
   return response.results.map((pokemon: { name: string; url: string }) => ({
     params: {

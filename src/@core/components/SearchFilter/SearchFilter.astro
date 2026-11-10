@@ -1,6 +1,4 @@
 ---
-
-import Typographi from "../Typographi/Typographi.astro";
 import {types, generations} from "@/data/data.json";
 
 export interface SearchProps {
@@ -34,11 +32,11 @@ const {
       <div class="w-[50%] flex flex-col gap-0.5">
         {
           selectType && (
-            <select id="typeSelect" class="text-txt-description3">
-              <option value="">Tipo</option>
+            <select id="typeSelect" class="text-txt-description3 capitalize">
+              <option class="capitalize" value="">Tipo</option>
               {
-                types.map((type: string):string[] => (
-                  <option value={type}>{type}</option>
+                types.sort().map((type: string):string[] => (
+                  <option class="capitalize" value={type}>{type}</option>
                 ))
               }
             </select>
@@ -48,11 +46,11 @@ const {
       <div class="w-[50%] flex flex-col gap-0.5">
         {
           selectGeneration && (
-            <select id="generationSelect" class="text-txt-description3">
-              <option value="">Generación</option>
+            <select id="generationSelect" class="text-txt-description3 capitalize">
+              <option class="capitalize" value="">Generación</option>
               {
                 generations.map((generation: { value: number; label: string }) => (
-                  <option value={generation.value}>{generation.label}</option>
+                  <option class="capitalize" value={generation.value}>{generation.label}</option>
                 ))
               }
             </select>
