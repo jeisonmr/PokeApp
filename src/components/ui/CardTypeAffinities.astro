@@ -3,6 +3,7 @@ import Icon from "@/@core/components/Icon/Icon.astro";
 import Typographi from "@/@core/components/Typographi/Typographi.astro";
 import { cardThemes } from "@/models/themes/cardThemes";
 import { normalizeType } from "@/utils/banner/banner";
+import { Image } from "astro:assets";
 
 export interface CardTypeAffinitiesProps {
   type: string;
@@ -14,18 +15,15 @@ export interface CardTypeAffinitiesProps {
 
 const { type, className, title, subtitle, affinities } = Astro.props as CardTypeAffinitiesProps;
 const typeKey = normalizeType([type]);
-const { border, tag, colorBar } = cardThemes[typeKey[0]];
-
-console.log('affinities', await affinities);
-
+const { border, tag, bgCardInternal } = cardThemes[typeKey[0]];
 ---
 
 <article 
   class={`
-  CardTypeAffinities border rounded-xs p-2 desktop:pb-5
+  CardTypeAffinities border rounded-xs p-2 desktop:pb-2
   ${border.borderColor} 
   ${border.hoverBorderColor} 
-  ${tag?.bgTag} 
+  ${bgCardInternal} 
   ${className}
   `}
 >
@@ -38,16 +36,28 @@ console.log('affinities', await affinities);
     </Typographi>
   )}
 
-  <div class="flex items-center gap-0.5 mt-1.5">
-    { affinities.map((tag: string) =>(
-      <div class={`bg-black/20 rounded-xs py-[0.2rem] px-1.5`}>
-        <Typographi 
-          component="span" 
-          className="text-txt-description3 font-primary-300 capitalize"
-        >
-            {normalizeType([tag.name])}
-        </Typographi>
+  <div class="flex items-center gap-0.5 mt-1.5 flex-wrap">
+    { affinities.map((tag: string) =>{
+      const type = normalizeType([tag.name]);
+      return (
+      <div class={`bg-white/10 rounded-xs py-1 px-0.5 w-6`}>
+         <picture class="flex flex-col items-center justify-between gap-[0.3rem]">
+          <Image
+            src={`/icons/types/${type}.png`}
+            alt={`Icono de tipo ${type}`}
+            width={20}
+            height={20}
+            class="w-2 h-2"
+          />
+          <Typographi 
+            component="span" 
+            className="text-txt-description4 font-primary-300 capitalize"
+          >
+              {type}
+          </Typographi>
+        </picture>
       </div>
-    ))}
+      )
+    })}
   </div>
 </article>

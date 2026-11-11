@@ -35,13 +35,21 @@ const affinities = Promise.all(dataStats.types.map(async ({type}) => {
 }));
 
 const data = await affinities;
+const damageRelations = {
+  doubleDamageTo: data[0].damage_relations.double_damage_to,
+  doubleDamageFrom: data[0].damage_relations.double_damage_from,
+  halfDamageTo: data[0].damage_relations.half_damage_to,
+  halfDamageFrom: data[0].damage_relations.half_damage_from,
+  noDamageTo: data[0].damage_relations.no_damage_to,
+  noDamageFrom: data[0].damage_relations.no_damage_from,
+};
 ---
 
 <Layout className="flex flex-col gap-3" title={`Pokemon ${name}`}>
 
   <Banner singlePage={true} dataPokemon={name} />
 
-  <div class="block-padding-medium-x flex flex-col gap-2">
+  <section id="affinities-base" class="block-padding-medium-x flex flex-col gap-2">
     <Typoografi 
       component="h1" 
       className="text-txt-title2 font-primary-600 "
@@ -61,8 +69,8 @@ const data = await affinities;
         data={dataStats}
       />
     </div>
-  </div>
-  <div class="block-padding-medium-x flex flex-col gap-1">
+  </section>
+  <section class="block-padding-medium-x flex flex-col gap-1">
     <Typoografi 
       component="h2" 
       className="text-txt-title2 font-primary-600 "
@@ -78,30 +86,78 @@ const data = await affinities;
     </Typoografi>
     
     <div class="w-full grid movil:grid-cols-1 desktop:grid-cols-3 gap-2">
-      <CardTypeAffinities
-        type={dataStats.types[0].type.name} 
-        className="w-full" 
-        data={dataStats}
-        title="Eficaz contra"
-        subtitle={`Ataques de ${dataStats}`}
-        affinities={data[0].damage_relations.double_damage_to}
-      />
-      <CardTypeAffinities
-        type={dataStats.types[0].type.name} 
-        className="w-full" 
-        data={dataStats}
-        title="Debilidades"
-        subtitle={`Daño recibido por ${name}`}
-        affinities={data[0].damage_relations.no_damage_to}
-      />
-      <CardTypeAffinities
-        type={dataStats.types[0].type.name} 
-        className="w-full" 
-        data={dataStats}
-        title="Resistencias"
-        subtitle="Daño recibido reducido"
-        affinities={data[0].damage_relations.half_damage_from}
-      />
+      {
+        damageRelations.doubleDamageTo.length > 0 && (
+        <CardTypeAffinities
+          type={dataStats.types[0].type.name} 
+          className="w-full" 
+          data={dataStats}
+          title="Eficaz contra"
+          subtitle={`Ataques de tipo`}
+          affinities={damageRelations.doubleDamageTo}
+        />
+        )
+      }
+      {
+        damageRelations.doubleDamageFrom.length > 0 && (
+        <CardTypeAffinities
+          type={dataStats.types[0].type.name} 
+          className="w-full" 
+          data={dataStats}
+          title="Debilidades"
+          subtitle={`Daño recibido por ${name}`}
+          affinities={damageRelations.doubleDamageFrom}
+        />
+        )
+      }
+      {
+        damageRelations.halfDamageTo.length > 0 && (
+        <CardTypeAffinities
+          type={dataStats.types[0].type.name} 
+          className="w-full" 
+          data={dataStats}
+          title="Poco eficaz contra"
+          subtitle="Los siguientes tipos"
+          affinities={damageRelations.halfDamageTo}
+        />
+        )
+      }
+      {
+        damageRelations.halfDamageFrom.length > 0 && (
+        <CardTypeAffinities
+          type={dataStats.types[0].type.name} 
+          className="w-full" 
+          data={dataStats}
+          title="Resistencias"
+          subtitle="Daño recibido reducido"
+          affinities={damageRelations.halfDamageFrom}
+        />
+        )
+      }
+      {
+        damageRelations.noDamageFrom.length > 0 && (
+        <CardTypeAffinities
+          type={dataStats.types[0].type.name} 
+          className="w-full" 
+          data={dataStats}
+          title="Inmunidades"
+          subtitle="No recibes daño de estos tipos"
+          affinities={damageRelations.noDamageFrom}
+        />
+        )
+      }
+      {
+        damageRelations.noDamageTo.length > 0 && (
+        <CardTypeAffinities
+          type={dataStats.types[0].type.name} 
+          className="w-full" 
+          data={dataStats}
+          title="Inmune a"
+          subtitle="No infliges daño a estos tipos"
+          affinities={damageRelations.noDamageTo}
+        />
+        )
+      }
     </div>
-  </div>
+  </section>
 </Layout>

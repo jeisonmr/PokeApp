@@ -12,7 +12,7 @@ export interface CardSkillsProps {
 
 const { type, className, data } = Astro.props as CardSkillsProps;
 const typeKey = normalizeType([type]);
-const { border, tag } = cardThemes[typeKey[0]];
+const { border, tag, bgCardInternal } = cardThemes[typeKey[0]];
 ---
 
 <article 
@@ -20,7 +20,7 @@ const { border, tag } = cardThemes[typeKey[0]];
   CardSkills rounded-xs p-2 border
   ${border.borderColor} 
   ${border.hoverBorderColor} 
-  ${tag?.bgTag}
+  ${bgCardInternal}
   ${className}`}
 >
   <Typographi 

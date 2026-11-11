@@ -10,7 +10,7 @@ export interface CardContainerProps {
 }
 const { type, className, data } = Astro.props as CardContainerProps;
 const typeKey = normalizeType([type]);
-const { border, tag, colorBar } = cardThemes[typeKey[0]];
+const { border, tag, colorBar, bgCardInternal } = cardThemes[typeKey[0]];
 ---
 
 <article
@@ -18,7 +18,7 @@ const { border, tag, colorBar } = cardThemes[typeKey[0]];
   CardBaseStatistics rounded-xs p-2 border
   ${border?.borderColor} 
   ${border?.hoverBorderColor} 
-  ${tag?.bgTag}
+  ${bgCardInternal}
   ${className}`}
 >
   <div class="flex justify-between gap-2 items-center mb-1">

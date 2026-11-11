@@ -146,8 +146,6 @@ function initSearchFilter() {
     if (window.pokemonsData && window.pokemonsData.length > 0) {
       pokemonsData = window.pokemonsData;
       clearInterval(checkData);
-      console.log('Pokemons data loaded:', pokemonsData.length);
-      console.log('Sample pokemon:', pokemonsData[0]);
     }
   }, 100);
   

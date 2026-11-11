@@ -12,16 +12,14 @@ export interface BannerUIProps{
   image?: string;
   type?: string;
   number?: number;
+  singlePage?: boolean;
 }
 
-const { name, description, image, type, number } = Astro.props;
-// console.log(type);
+const { name, description, image, type, number, singlePage } = Astro.props;
 
 const types = type?.map(({type}:any) =>{
   return type.name
 })
-
-// console.log(types);
 
 // Normalizar el tipo a español
 const normalizedType = type 
@@ -84,7 +82,11 @@ const iconMedal = Array.of(...normalizedType);
         )
       }
   
-      <Button variant="primary" className="w-fit flex items-center justify-center gap-1 font-primary-600 text-txt-title3">
+      <a 
+        href={singlePage ? '#affinities-base' : `/pokemon/${name}`} 
+        class="w-fit flex items-center justify-center gap-1 font-primary-600 text-txt-title3 bg-black/80 text-white rounded-xs p-1.5 cursor-pointer"
+        aria-label="Ver detalles del pokemon"
+      >
         <Image
           src={iconPokeball}
           alt="Flecha derecha"
@@ -93,19 +95,25 @@ const iconMedal = Array.of(...normalizedType);
           class="w-2 h-2"
         />
         Más detalles
-      </Button>
+      </a>
     </div>
   
     <div class="h-auto movil:w-full desktop:w-1/2 relative z-10 flex items-center justify-center max-desktop:pt-2">
       {image && (
-        <Image
-          loading="lazy"
-          src={image}
-          alt={name || "Pokemon"}
-          width={200}
-          height={200}
-          class="pokemon_image object-fill w-20 lg:w-[70%] h-auto aspect-square"
-        />
+        <a 
+          href={singlePage ? '/' : `/pokemon/${name}`} 
+          aria-label="Ver detalles del pokemon"
+          class="cursor-pointer w-20 desktop:w-full h-auto"
+        >
+          <Image
+            loading="lazy"
+            src={image}
+            alt={name || "Pokemon"}
+            width={200}
+            height={200}
+            class="pokemon_image object-fill w-20 desktop:w-full h-auto aspect-square"
+          />
+        </a>
       )}
     </div>
   </div>
