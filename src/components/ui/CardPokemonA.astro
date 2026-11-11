@@ -5,7 +5,7 @@ import { cardThemes } from "@/models/themes/cardThemes";
 import Typographi from "@/@core/components/Typographi/Typographi.astro";
 import Icon from "@/@core/components/Icon/Icon.astro";
 
-interface CardProps {
+interface CardPokemonAProps {
   name?: string;
   image?: string;
   customCard?: string;
@@ -14,16 +14,16 @@ interface CardProps {
   generation?: number;
 }
 
-let { name, image, customCard, number, typeEn, generation } = Astro.props as CardProps;
+let { name, image, customCard, number, typeEn, generation } = Astro.props as CardPokemonAProps;
 
-const { border, bgCard, tag } = cardThemes[customCard![0]] as CardProps;
+const { border, bgCard, tag } = cardThemes[customCard![0]];
 
 const colorHalo = `var(--color-type-${typeEn?.[0]}-20)`;
 ---
 
 <article
   class={`
-    CardUi
+    CardPokemonA
     h-full
     border-2
     ${bgCard} 

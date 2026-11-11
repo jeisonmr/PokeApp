@@ -5,7 +5,7 @@ import Layout from "@/layout/Layout.astro";
 import { getPokemonLimit, getSpecies } from "@/services/api.services";
 import Typographi from "@/@core/components/Typographi/Typographi.astro";
 import SearchFilter from "@/@core/components/SearchFilter/SearchFilter.astro";
-import Card from "@/components/ui/Card.astro";
+import CardPokemonA from "@/components/ui/CardPokemonA.astro";
 import { normalizeType } from "@/utils/banner/banner";
 import { getNamePokemon } from "@/services/api.services";
 import type { PokemonProps } from "@/models/types/pokemon";
@@ -67,7 +67,7 @@ const pokemonsAll: PokemonDetails[] = await Promise.all(
             return (
               <li class="h-full last:max-desktop:col-span-2">
                 <a href={`/pokemon/${name}`}>
-                  <Card
+                  <CardPokemonA
                     name={name}
                     image={image}
                     customCard={type}

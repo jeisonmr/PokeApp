@@ -5,6 +5,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "acero",
     bgCard: 'bg-linear-steel',
     bgCardInternal: 'bg-[var(--color-type-steel-20)]/50',
+    textColor: 'text-[var(--color-type-steel-10)]',
     border: {
       borderColor: 'border-[var(--color-type-steel)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-steel)]/20',
@@ -18,6 +19,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "agua",
     bgCard: 'bg-linear-water',
     bgCardInternal: 'bg-[var(--color-type-water-20)]/50',
+    textColor: 'text-[var(--color-type-water-10)]',
     border: {
       borderColor: 'border-[var(--color-type-water)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-water)]/20',
@@ -31,6 +33,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "bicho",
     bgCard: 'bg-linear-bug',
     bgCardInternal: 'bg-[var(--color-type-bug-20)]/50',
+    textColor: 'text-[var(--color-type-bug-10)]',
     border: {
       borderColor: 'border-[var(--color-type-bug)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-bug)]/20',
@@ -44,6 +47,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "dragon",
     bgCard: 'bg-linear-dragon',
     bgCardInternal: 'bg-[var(--color-type-dragon-20)]/50',
+    textColor: 'text-[var(--color-type-dragon-10)]',
     border: {
       borderColor: 'border-[var(--color-type-dragon)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-dragon)]/20',
@@ -57,6 +61,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "electrico",
     bgCard: 'bg-linear-electric',
     bgCardInternal: 'bg-[var(--color-type-electric-20)]/50',
+    textColor: 'text-[var(--color-type-electric-10)]',
     border: {
       borderColor: 'border-[var(--color-type-electric)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-electric)]/20',
@@ -70,6 +75,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "fantasma",
     bgCard: 'bg-linear-ghost',
     bgCardInternal: 'bg-[var(--color-type-ghost-20)]/50',
+    textColor: 'text-[var(--color-type-ghost-10)]',
     border: {
       borderColor: 'border-[var(--color-type-ghost)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-ghost)]/20',
@@ -83,6 +89,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "fuego",
     bgCard: 'bg-linear-fire',
     bgCardInternal: 'bg-[var(--color-type-fire-20)]/50',
+    textColor: 'text-[var(--color-type-fire-10)]',
     border: {
       borderColor: 'border-[var(--color-type-fire)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-fire)]/20',
@@ -96,6 +103,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "hada",
     bgCard: 'bg-linear-fairy',
     bgCardInternal: 'bg-[var(--color-type-fairy-20)]/50',
+    textColor: 'text-[var(--color-type-fairy-10)]',
     border: {
       borderColor: 'border-[var(--color-type-fairy)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-fairy)]/20',
@@ -109,6 +117,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "hielo",
     bgCard: 'bg-linear-ice',
     bgCardInternal: 'bg-[var(--color-type-ice-20)]/50',
+    textColor: 'text-[var(--color-type-ice-10)]',
     border: {
       borderColor: 'border-[var(--color-type-ice)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-ice)]/20',
@@ -122,6 +131,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "lucha",
     bgCard: 'bg-linear-fighting',
     bgCardInternal: 'bg-[var(--color-type-fighting-20)]/50',
+    textColor: 'text-[var(--color-type-fighting-10)]',
     border: {
       borderColor: 'border-[var(--color-type-fighting)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-fighting)]/20',
@@ -135,6 +145,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "normal",
     bgCard: 'bg-linear-normal',
     bgCardInternal: 'bg-[var(--color-type-normal-20)]/50',
+    textColor: 'text-[var(--color-type-normal-10)]',
     border: {
       borderColor: 'border-[var(--color-type-normal)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-normal)]/20',
@@ -148,6 +159,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "planta",
     bgCard: 'bg-linear-grass',
     bgCardInternal: 'bg-[var(--color-type-grass-20)]/50',
+    textColor: 'text-[var(--color-type-grass-10)]',
     border: {
       borderColor: 'border-[var(--color-type-grass)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-grass)]/20',
@@ -161,6 +173,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "psiquico",
     bgCard: 'bg-linear-psychic',
     bgCardInternal: 'bg-[var(--color-type-psychic-20)]/50',
+    textColor: 'text-[var(--color-type-psychic-10)]',
     border: {
       borderColor: 'border-[var(--color-type-psychic)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-psychic)]/20',
@@ -174,6 +187,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "roca",
     bgCard: 'bg-linear-rock',
     bgCardInternal: 'bg-[var(--color-type-rock-20)]/50',
+    textColor: 'text-[var(--color-type-rock-10)]',
     border: {
       borderColor: 'border-[var(--color-type-rock)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-rock)]/20',
@@ -187,6 +201,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "siniestro",
     bgCard: 'bg-linear-dark',
     bgCardInternal: 'bg-[var(--color-type-dark-20)]/50',
+    textColor: 'text-[var(--color-type-dark-10)]',
     border: {
       borderColor: 'border-[var(--color-type-dark)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-dark)]/20',
@@ -200,6 +215,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "tierra",
     bgCard: 'bg-linear-ground',
     bgCardInternal: 'bg-[var(--color-type-ground-20)]/50',
+    textColor: 'text-[var(--color-type-ground-10)]',
     border: {
       borderColor: 'border-[var(--color-type-ground)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-ground)]/20',
@@ -213,6 +229,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "veneno",
     bgCard: 'bg-linear-poison',
     bgCardInternal: 'bg-[var(--color-type-poison-20)]/50',
+    textColor: 'text-[var(--color-type-poison-10)]',
     border: {
       borderColor: 'border-[var(--color-type-poison)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-poison)]/20',
@@ -226,6 +243,7 @@ export const cardThemes: Record<string, CardProps> = {
     type: "volador",
     bgCard: 'bg-linear-flying',
     bgCardInternal: 'bg-[var(--color-type-flying-20)]/50',
+    textColor: 'text-[var(--color-type-flying-10)]',
     border: {
       borderColor: 'border-[var(--color-type-flying)]/10',
       hoverBorderColor: 'hover:border-[var(--color-type-flying)]/20',

@@ -1,0 +1,74 @@
+---
+import Typographi from "@/@core/components/Typographi/Typographi.astro";
+import { Image } from "astro:assets";
+import { cardThemes } from "@/models/themes/cardThemes";
+import Icon from "@/@core/components/Icon/Icon.astro";
+import { normalizeType } from "@/utils/banner/banner";
+
+export interface CardPokemonBProps {
+  name?: string;
+  image?: string;
+  types?: string[];
+}
+
+const { name, image, types } = Astro.props as CardPokemonBProps;
+
+const type = types?.map((ty) => {
+  return normalizeType([ty.type.name]).toLocaleString();
+});
+
+const { border, bgCardInternal } = cardThemes[type?.[0] || 'normal'];
+---
+
+<article
+  class={`
+    CardPokemonB
+    h-full
+    border
+    ${bgCardInternal} 
+    ${border.borderColor}
+    ${border.hoverBorderColor} 
+    flex flex-col items-center justify-center desktop:gap-2
+    p-1 desktop:p-2 rounded-lg duration-300
+  `}
+>
+  {
+    image && (
+      <div class={`relative w-full h-full flex items-center justify-center`}>
+        <Image
+          src={image}
+          alt={"Foto"}
+          width={10}
+          height={10}
+          aria-hidden="true"
+          class="w-[14.2rem] h-auto object-contain aspect-square relative z-20"
+        />
+      </div>
+    )
+  }
+  <footer class="w-full flex flex-col gap-1 flex-1 items-center">
+    <h3 class="text-txt-title3 font-primary-600 capitalize">
+      {name}
+    </h3>
+    <div class="flex flex-wrap gap-1">
+      {
+        type?.map((tag:string, idx:number) => {
+          const { textColor } = cardThemes[tag] || {};
+          return (
+          <Typographi 
+            component="span"
+            className={`flex w-fit gap-0.5 text-txt-description3 font-primary-600 ${textColor} py-[0.7rem] px-1 rounded-xs capitalize 
+            ${cardThemes[tag]?.tag.bgTag}`}
+          >
+            <Icon 
+              icon={tag} 
+              className="w-[1.7rem] h-auto"
+            />
+            {tag}
+          </Typographi>
+          );
+        })
+      }
+    </div>
+  </footer>
+</article>

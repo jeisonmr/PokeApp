@@ -1,7 +1,8 @@
-import { ApiPokemon, ApiPokemonLimit, ApiPokemonSpecies } from "@/utils/constants/api.constants";
+import { ApiEvolution, ApiPokemon, ApiPokemonLimit, ApiPokemonSpecies, ApiType } from "@/utils/constants/api.constants";
 import { generations } from "@/utils/constants/services.constans";
 import type { PokemonProps } from "@/models/types/pokemon";
 import type { GenerationProps, PokemonAllProps } from "@/models/types/pokemonAll";
+import type { TypeApiResponse } from "@/models/types/pokemonType";
 
 /**
  * Retorna todos los Pokemons de la API.
@@ -89,3 +90,52 @@ export const getSpecies = async (pokemon:number|string):Promise<PokemonAllProps>
   const res = await data.json() as PokemonAllProps;
   return res;
 }
+
+
+/**
+ * Esta función retorna los tipos del pokemon.
+ * @param name.
+ * @returns Promesa con los tipos del pokemon.
+ */
+export const getTypesPokemon = async (name:string):Promise<TypeApiResponse> => {
+  const api = `${ApiType}${name}`;
+  const data = await fetch(api);
+  const res = await data.json() as TypeApiResponse;
+
+  return res;
+}
+
+
+/**
+ * Esta función retorna la linea evolutiva de un pokemon.
+ * @param name ID del pokemon.
+ * @returns Promise con la información evolutiva del pokemon.
+ */
+export const getEvolutionPokemon = async (id: number): Promise<any[]> => {
+  const species = await getSpecies(id);
+  const evolutionResponse = await fetch(species.evolution_chain.url);
+  const evolutionData = await evolutionResponse.json();
+
+  const getEvolutions = async (chain: any): Promise<any[]> => {
+    const pokemon = await getNamePokemon(chain.species.name);
+    
+    const currentPokemon = {
+      name: pokemon.name,
+      sprites: pokemon.sprites?.versions?.['generation-viii']?.['brilliant-diamond-shining-pearl']?.front_default
+          || pokemon.sprites?.versions?.['generation-viii']?.['sword-shield']?.front_default
+          || pokemon.sprites?.versions?.['generation-viii']?.['legends-arceus']?.front_default,
+      types: pokemon.types,
+    };
+
+    const nextEvolutions = await Promise.all(
+      chain.evolves_to.map(getEvolutions)
+    );
+
+    return [
+      currentPokemon,
+      ...nextEvolutions.flat(),
+    ];
+  };
+
+  return getEvolutions(evolutionData.chain);
+};

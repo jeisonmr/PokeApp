@@ -40,7 +40,7 @@ const { border, tag, bgCardInternal } = cardThemes[typeKey[0]];
     { affinities.map((tag: string) =>{
       const type = normalizeType([tag.name]);
       return (
-      <div class={`bg-white/10 rounded-xs py-1 px-0.5 w-6`}>
+      <div class={`bg-white/10 rounded-xs py-1 px-0.5 w-6 hover:scale-[1.05] transition-transform duration-200`}>
          <picture class="flex flex-col items-center justify-between gap-[0.3rem]">
           <Image
             src={`/icons/types/${type}.png`}

@@ -103,7 +103,7 @@ const iconMedal = Array.of(...normalizedType);
         <a 
           href={singlePage ? '/' : `/pokemon/${name}`} 
           aria-label="Ver detalles del pokemon"
-          class="cursor-pointer w-20 desktop:w-full h-auto"
+          class="cursor-pointer w-20 desktop:w-full xl:w-[80%] h-auto"
         >
           <Image
             loading="lazy"
@@ -111,7 +111,7 @@ const iconMedal = Array.of(...normalizedType);
             alt={name || "Pokemon"}
             width={200}
             height={200}
-            class="pokemon_image object-fill w-20 desktop:w-full h-auto aspect-square"
+            class="pokemon_image object-fill w-20 desktop:w-full xl:w-[80%] h-auto aspect-square"
           />
         </a>
       )}

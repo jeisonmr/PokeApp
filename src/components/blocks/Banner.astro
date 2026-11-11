@@ -14,7 +14,7 @@ const { singlePage = false, dataPokemon } = Astro.props as BannerProps;
 // Data API - Envolviendo en función async
 const idBanners = IdBanners.idBanners;
 
-const pokemonFromBanner = singlePage ? [] : await Promise.all(
+const pokemonFromBanner = await Promise.all(
   idBanners.map(async (id: number) => {
     const pokemon = await getIdPokemon(id);
     const species = await getSpecies(id);
@@ -29,10 +29,6 @@ const pokemonFromBanner = singlePage ? [] : await Promise.all(
     };
   }),
 );
-
-const pokemonData = singlePage 
-? await getNamePokemon(dataPokemon)
-: {};
 ---
 
 <section class="movil:h-60 desktop:h-[70vh] relative">
@@ -40,11 +36,7 @@ const pokemonData = singlePage
     singlePage 
     ? (
       <Banner
-        name={pokemonData.name}
-        image={pokemonData.sprites.other?.dream_world.front_default}
-        type={pokemonData.types}
-        number={pokemonData.id}
-        description={pokemonData.description}
+        {...dataPokemon}
         singlePage={singlePage}
       />
       )

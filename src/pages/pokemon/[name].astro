@@ -1,12 +1,13 @@
 ---
 import Banner from '@/components/blocks/Banner.astro';
 import Layout from '../../layout/Layout.astro';
-import { getNamePokemon, getPokemonLimit } from '@/services/api.services';
+import { getNamePokemon, getPokemonLimit, getSpecies, getTypesPokemon, getEvolutionPokemon } from '@/services/api.services';
 import { COUNT_POKEMONS } from '@/utils/constants/services.constans';
 import Typoografi from '@core/components/Typographi/Typographi.astro';
 import CardBaseStatistics from '@/components/ui/CardBaseStatistics.astro';
 import CardSkills from '@/components/ui/CardSkills.astro';
 import CardTypeAffinities from '@/components/ui/CardTypeAffinities.astro';
+import CardPokemonB from '@/components/ui/CardPokemonB.astro';
  
 export async function getStaticPaths() {
   const response = await getPokemonLimit(COUNT_POKEMONS);
@@ -25,29 +26,47 @@ export async function getStaticPaths() {
 const { name, url } = Astro.props as {name: string; url: string;};
 
 const dataStats = await getNamePokemon(name);
-
-const affinities = Promise.all(dataStats.types.map(async ({type}) => {
-  const res = await fetch(`https://pokeapi.co/api/v2/type/${type.name}`)
-  const data = await res;
-  const damageRelations = await data.json();
-  
-  return damageRelations
-}));
-
-const data = await affinities;
-const damageRelations = {
-  doubleDamageTo: data[0].damage_relations.double_damage_to,
-  doubleDamageFrom: data[0].damage_relations.double_damage_from,
-  halfDamageTo: data[0].damage_relations.half_damage_to,
-  halfDamageFrom: data[0].damage_relations.half_damage_from,
-  noDamageTo: data[0].damage_relations.no_damage_to,
-  noDamageFrom: data[0].damage_relations.no_damage_from,
+const species = await getSpecies(name);
+const primaryType: any[] | string  = dataStats.types || "normal";
+const dataSinglePokemon = {
+  name: dataStats.name,
+  image: dataStats.sprites.other?.dream_world.front_default,
+  type: primaryType,
+  number: dataStats.id,
+  description: species.flavor_text_entries.find(({language}: { language: { name: string } }) => language.name === "es")?.flavor_text
 };
+
+// Obtener tipos del Pokémon en paralelo
+const affinities = await Promise.all(
+  dataStats.types.map(({ type }) => getTypesPokemon(type.name))
+);
+
+// Validar que existan afinidades antes de extraer damage_relations
+const firstTypeRelations = affinities[0]?.damage_relations || {
+  double_damage_to: [],
+  double_damage_from: [],
+  half_damage_to: [],
+  half_damage_from: [],
+  no_damage_to: [],
+  no_damage_from: [],
+};
+
+const damageRelations = {
+  doubleDamageTo: firstTypeRelations.double_damage_to,
+  doubleDamageFrom: firstTypeRelations.double_damage_from,
+  halfDamageTo: firstTypeRelations.half_damage_to,
+  halfDamageFrom: firstTypeRelations.half_damage_from,
+  noDamageTo: firstTypeRelations.no_damage_to,
+  noDamageFrom: firstTypeRelations.no_damage_from,
+};
+
+const evolution = await getEvolutionPokemon(dataStats.id);
+console.log('EVOLUCION:', evolution);
 ---
 
 <Layout className="flex flex-col gap-3" title={`Pokemon ${name}`}>
 
-  <Banner singlePage={true} dataPokemon={name} />
+  <Banner singlePage={true} dataPokemon={dataSinglePokemon} />
 
   <section id="affinities-base" class="block-padding-medium-x flex flex-col gap-2">
     <Typoografi 
@@ -70,10 +89,11 @@ const damageRelations = {
       />
     </div>
   </section>
+
   <section class="block-padding-medium-x flex flex-col gap-1">
     <Typoografi 
       component="h2" 
-      className="text-txt-title2 font-primary-600 "
+      className="text-txt-title2 font-primary-600"
     >
       Afinidades de tipo
     </Typoografi>
@@ -159,5 +179,27 @@ const damageRelations = {
         )
       }
     </div>
+  </section>
+
+  <section class="block-padding-medium-x flex flex-col gap-2">
+    <Typoografi 
+      component="h2" 
+      className="text-txt-title2 font-primary-600"
+    >
+      Evolución
+    </Typoografi>
+    <ul class="w-full grid movil:grid-cols-1 desktop:grid-cols-3 gap-2">
+    {
+      evolution.map((pokemon: any) => (
+        <li class="hover:scale-[1.05] transition-transform duration-200">
+          <CardPokemonB
+            name={pokemon.name}
+            image={pokemon.sprites}
+            types={pokemon.types}
+          />
+        </li>
+      ))
+    }
+    </ul>
   </section>
 </Layout>

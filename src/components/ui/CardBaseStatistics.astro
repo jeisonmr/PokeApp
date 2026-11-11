@@ -44,9 +44,9 @@ const { border, tag, colorBar, bgCardInternal } = cardThemes[typeKey[0]];
       <div class="flex justify-between gap-2 items-center">
         <Typographi
           component="h4"
-          className="text-txt-description4 font-primary-300 text-white/30 w-[15%] capitalize"
+          className="text-txt-description3 font-primary-300 text-white/30 w-[15%] capitalize"
         >
-          {stat.name}
+          {stat.name.replace('-', ' ')}
         </Typographi>
         <Typographi
           component="span"
