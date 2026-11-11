@@ -33,10 +33,10 @@ const colorHalo = `var(--color-type-${typeEn?.[0]}-20)`;
     p-1 desktop:p-2 rounded-lg duration-300
   `}
 >
-<header class="flex justify-between w-full">
+<header class="flex justify-between w-full items-start">
   <Typographi 
     component="span" 
-    className="flex items-center w-full text-txt-description3 font-primary-300"
+    className="flex items-center w-full text-txt-title2 font-pokemon-600 text-black-30"
   >
     #{number}
   </Typographi>
@@ -45,7 +45,7 @@ const colorHalo = `var(--color-type-${typeEn?.[0]}-20)`;
     alt={`Ir a la interna de ${name}`}
     width={24}
     height={24}
-    class="w-auto h-auto object-contain aspect-square"
+    class="w-2 h-auto object-contain aspect-square"
   />
 </header>
   {

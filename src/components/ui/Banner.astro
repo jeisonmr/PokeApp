@@ -4,7 +4,7 @@ import ImagesResponsive from "@/@core/components/ImagesResponsive/ImagesResponsi
 import Typographi from "@/@core/components/Typographi/Typographi.astro";
 import { Image } from "astro:assets";
 import { normalizeType } from "../../utils/banner/banner";
-import iconPokeball from "@base/public/icons/Pokeball-logo.png";
+import iconPokeball from "@base/public/icons/pokeball.png";
 
 export interface BannerUIProps{
   name?: string;
@@ -17,7 +17,7 @@ export interface BannerUIProps{
 const { name, description, image, type, number } = Astro.props;
 // console.log(type);
 
-const types = type.map(({type}:any) =>{
+const types = type?.map(({type}:any) =>{
   return type.name
 })
 

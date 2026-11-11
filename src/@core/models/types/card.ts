@@ -9,4 +9,5 @@ export interface CardProps {
   tag?: {
     bgTag: string;
   };
+  colorBar?: string;
 }

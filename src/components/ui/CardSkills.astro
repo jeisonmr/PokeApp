@@ -1,0 +1,67 @@
+---
+import Icon from "@/@core/components/Icon/Icon.astro";
+import Typographi from "@/@core/components/Typographi/Typographi.astro";
+import { cardThemes } from "@/models/themes/cardThemes";
+import { normalizeType } from "@/utils/banner/banner";
+
+export interface CardSkillsProps {
+  type: string;
+  className?: string;
+  data: any;
+}
+
+const { type, className, data } = Astro.props as CardSkillsProps;
+const typeKey = normalizeType([type]);
+const { border, tag } = cardThemes[typeKey[0]];
+---
+
+<article 
+  class={`
+  CardSkills rounded-xs p-2 border
+  ${border.borderColor} 
+  ${border.hoverBorderColor} 
+  ${tag?.bgTag}
+  ${className}`}
+>
+  <Typographi 
+    component="h3"
+    className="text-txt-title3 font-primary-600 mb-1"
+  >
+    Habilidades
+  </Typographi>
+
+  <div class="flex flex-col gap-2">
+    {
+      data.abilities.map(async (ability: any) => {
+        const apiDescription = ability.ability.url;
+        const description = await fetch(apiDescription);
+        const descriptionData = await description.json();
+
+        return(
+          <div class="flex gap-1">
+            <div class={`${tag?.bgTag} p-0.5 w-fit h-fit rounded-xs`}>
+              <Icon icon={typeKey[0]} className="min-w-2.5 h-2.5" />
+            </div>
+            <div class="flex flex-col gap-[0.2rem]">
+              <Typographi 
+                component="p"
+                className="text-white text-txt-description2 font-primary-300 capitalize"
+              >
+                {ability.ability.name}
+              </Typographi>
+
+              <Typographi 
+                component="p"
+                className="text-white/50 text-txt-description3 font-primary-300 capitalize"
+              >
+                {descriptionData.effect_entries[2].effect}
+              </Typographi>
+            </div>
+          </div>
+        )
+      }
+
+      )
+    }
+  </div>
+</article>

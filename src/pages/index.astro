@@ -12,17 +12,6 @@ import type { PokemonProps } from "@/models/types/pokemon";
 import type { PokemonDetails } from "@/models/types/pokemonAll";
 import { COUNT_POKEMONS } from "@/utils/constants/services.constans";
 
-export async function getStaticPaths() {
-  const pokemonsAll = await getPokemonLimit(COUNT_POKEMONS);
-
-  return pokemonsAll.results.map((pokemon) => ({
-    params: { page: pokemon.name },
-    props: { pokemon: pokemonsAll },
-  }));
-}
-
-const { pokemon } = Astro.props;
-
 const pokemonResults = await getPokemonLimit(COUNT_POKEMONS);
 const pokemonsAll: PokemonDetails[] = await Promise.all(
       pokemonResults.results.map(async (pokemon) => {

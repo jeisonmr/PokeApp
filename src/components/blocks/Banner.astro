@@ -1,14 +1,20 @@
 ---
-import { getIdPokemon, getSpecies } from "@/services/api.services";
+import { getIdPokemon, getNamePokemon, getSpecies } from "@/services/api.services";
 import IdBanners from "@/data/data.json";
 import SwiperSlider from "@/@core/components/Swiper/SwiperSlider.astro";
 import Banner from "../ui/Banner.astro";
 
+export interface BannerProps {
+  singlePage?: boolean;
+  dataPokemon?: any;
+}
+
+const { singlePage = false, dataPokemon } = Astro.props as BannerProps;
 
 // Data API - Envolviendo en función async
 const idBanners = IdBanners.idBanners;
 
-const pokemonFromBanner = await Promise.all(
+const pokemonFromBanner = singlePage ? [] : await Promise.all(
   idBanners.map(async (id: number) => {
     const pokemon = await getIdPokemon(id);
     const species = await getSpecies(id);
@@ -23,25 +29,43 @@ const pokemonFromBanner = await Promise.all(
     };
   }),
 );
+
+const pokemonData = singlePage 
+? await getNamePokemon(dataPokemon)
+: {};
 ---
 
 <section class="movil:h-60 desktop:h-[70vh] relative">
-  <SwiperSlider
-    Component={Banner}
-    slideProps={pokemonFromBanner}
-    swiperContainer="h-full"
-    swiperWrapper="h-full"
-    swiperSlide="h-full overflow-hidden"
-    swiperPagination=""
-    swiperButtonPrev=""
-    swiperButtonNext=""
-    options={{
-      effect: "fade",
-      speed: 2000,
-      loop: true,
-      autoplay: {
-        delay: 5000,
-      },
-    }}
-  />
+  {
+    singlePage 
+    ? (
+      <Banner
+        name={pokemonData.name}
+        image={pokemonData.sprites.other?.dream_world.front_default}
+        type={pokemonData.types}
+        number={pokemonData.id}
+        description={pokemonData.description}
+      />
+      )
+    : (
+      <SwiperSlider
+        Component={Banner}
+        slideProps={pokemonFromBanner}
+        swiperContainer="h-full"
+        swiperWrapper="h-full"
+        swiperSlide="h-full overflow-hidden"
+        swiperPagination=""
+        swiperButtonPrev=""
+        swiperButtonNext=""
+        options={{
+          effect: "fade",
+          speed: 4000,
+          loop: true,
+          autoplay: {
+            delay: 5000,
+          },
+        }}
+      />
+      ) 
+  }
 </section>

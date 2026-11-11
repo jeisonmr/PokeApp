@@ -1,5 +1,6 @@
 ---
 import {types, generations} from "@/data/data.json";
+import Icon from "../Icon/Icon.astro";
 
 export interface SearchProps {
   placeholder?: string;
@@ -29,7 +30,7 @@ const {
       }
     </div>
     <div class="flex gap-2 movil:w-full desktop:w-[40%]">
-      <div class="w-[50%] flex flex-col gap-0.5">
+      <div class="w-[50%] flex flex-col gap-0.5 containerSelect">
         {
           selectType && (
             <select id="typeSelect" class="text-txt-description3 capitalize">
@@ -42,8 +43,9 @@ const {
             </select>
           )
         }
+        <Icon icon="pokeball" />
       </div>
-      <div class="w-[50%] flex flex-col gap-0.5">
+      <div class="w-[50%] flex flex-col gap-0.5 containerSelect">
         {
           selectGeneration && (
             <select id="generationSelect" class="text-txt-description3 capitalize">
@@ -56,6 +58,7 @@ const {
             </select>
           )
         }
+        <Icon icon="pokeball" />
       </div>
     </div>
   </div>

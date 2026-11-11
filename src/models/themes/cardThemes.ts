@@ -11,6 +11,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-steel-20)]'
     },
+    colorBar: 'bg-[var(--color-type-steel)]',
   },
   "agua": {
     type: "agua",
@@ -22,6 +23,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-water-20)]'
     },
+    colorBar: 'bg-[var(--color-type-water)]',
   },
   "bicho": {
     type: "bicho",
@@ -33,6 +35,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-bug-20)]'
     },
+    colorBar: 'bg-[var(--color-type-bug)]',
   },
   "dragon": {
     type: "dragon",
@@ -55,6 +58,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-electric-20)]'
     },
+    colorBar: 'bg-[var(--color-type-electric)]',
   },
   "fantasma": {
     type: "fantasma",
@@ -66,6 +70,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-ghost-20)]'
     },
+    colorBar: 'bg-[var(--color-type-ghost)]',
   },
   "fuego": {
     type: "fuego",
@@ -77,6 +82,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-fire-20)]'
     },
+    colorBar: 'bg-[var(--color-type-fire)]',
   },
   "hada": {
     type: "hada",
@@ -88,6 +94,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-fairy-20)]'
     },
+    colorBar: 'bg-[var(--color-type-fairy)]',
   },
   "hielo": {
     type: "hielo",
@@ -99,6 +106,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-ice-20)]'
     },
+    colorBar: 'bg-[var(--color-type-ice)]',
   },
   "lucha": {
     type: "lucha",
@@ -110,6 +118,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-fighting-20)]'
     },
+    colorBar: 'bg-[var(--color-type-fighting)]',
   },
   "normal": {
     type: "normal",
@@ -121,6 +130,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-normal-20)]'
     },
+    colorBar: 'bg-[var(--color-type-normal)]',
   },
   "planta": {
     type: "planta",
@@ -132,6 +142,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-grass-20)]'
     },
+    colorBar: 'bg-[var(--color-type-grass)]',
   },
   "psiquico": {
     type: "psiquico",
@@ -143,6 +154,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-psychic-20)]'
     },
+    colorBar: 'bg-[var(--color-type-psychic)]',
   },
   "roca": {
     type: "roca",
@@ -154,6 +166,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-rock-20)]'
     },
+    colorBar: 'bg-[var(--color-type-rock)]',
   },
   "siniestro": {
     type: "siniestro",
@@ -165,6 +178,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-dark-20)]'
     },
+    colorBar: 'bg-[var(--color-type-dark)]',
   },
   "tierra": {
     type: "tierra",
@@ -176,6 +190,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-ground-20)]'
     },
+    colorBar: 'bg-[var(--color-type-ground)]',
   },
   "veneno": {
     type: "veneno",
@@ -187,6 +202,7 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-poison-20)]'
     },
+    colorBar: 'bg-[var(--color-type-poison)]',
   },
   "volador": {
     type: "volador",
@@ -198,5 +214,6 @@ export const cardThemes: Record<string, CardProps> = {
     tag: {
       bgTag: 'bg-[var(--color-type-flying-20)]'
     },
+    colorBar: 'bg-[var(--color-type-flying)]',
   },
 };

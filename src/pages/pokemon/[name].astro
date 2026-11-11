@@ -1,9 +1,13 @@
 ---
+import Banner from '@/components/blocks/Banner.astro';
 import Layout from '../../layout/Layout.astro';
-import { getPokemonLimit } from '@/services/api.services';
+import { getNamePokemon, getPokemonLimit } from '@/services/api.services';
 import { COUNT_POKEMONS } from '@/utils/constants/services.constans';
 import Typoografi from '@core/components/Typographi/Typographi.astro';
-
+import CardBaseStatistics from '@/components/ui/CardBaseStatistics.astro';
+import CardSkills from '@/components/ui/CardSkills.astro';
+import CardTypeAffinities from '@/components/ui/CardTypeAffinities.astro';
+ 
 export async function getStaticPaths() {
   const response = await getPokemonLimit(COUNT_POKEMONS);
 
@@ -18,32 +22,86 @@ export async function getStaticPaths() {
   }));
 }
 
-const { name, url } = Astro.props as {
-  name: string;
-  url: string;
-};
+const { name, url } = Astro.props as {name: string; url: string;};
 
-const id = url.split('/').filter(Boolean).pop();
+const dataStats = await getNamePokemon(name);
 
-const currentPage = Number(Astro.url.searchParams.get('pages') ?? 1);
+const affinities = Promise.all(dataStats.types.map(async ({type}) => {
+  const res = await fetch(`https://pokeapi.co/api/v2/type/${type.name}`)
+  const data = await res;
+  const damageRelations = await data.json();
+  
+  return damageRelations
+}));
 
-const previousUrl = currentPage <= 1
-  ? '/'
-  : `/${currentPage - 1}/`;
+const data = await affinities;
 ---
 
-<Layout title={`Pokemon ${name}`}>
-  <a href={previousUrl}>
-    <Typoografi component="h1" className="text-center text-6xl font-bold">
-      {name}
+<Layout className="flex flex-col gap-3" title={`Pokemon ${name}`}>
+
+  <Banner singlePage={true} dataPokemon={name} />
+
+  <div class="block-padding-medium-x flex flex-col gap-2">
+    <Typoografi 
+      component="h1" 
+      className="text-txt-title2 font-primary-600 "
+    >
+     Conoce a {name}
     </Typoografi>
 
-    <img
-      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`}
-      alt={`Imagen de ${name}`}
-      width="200"
-      height="200"
-      class="mx-auto h-auto w-100 aspect-square"
-    />
-  </a>
+    <div class="w-full h-auto flex movil:flex-col desktop:flex-row gap-2">
+      <CardBaseStatistics 
+        type={dataStats.types[0].type.name} 
+        className="w-full desktop:w-1/2" 
+        data={dataStats}
+      />
+      <CardSkills 
+        type={dataStats.types[0].type.name} 
+        className="w-full desktop:w-1/2" 
+        data={dataStats}
+      />
+    </div>
+  </div>
+  <div class="block-padding-medium-x flex flex-col gap-1">
+    <Typoografi 
+      component="h2" 
+      className="text-txt-title2 font-primary-600 "
+    >
+      Afinidades de tipo
+    </Typoografi>
+
+    <Typoografi 
+      component="p" 
+      className="text-txt-description3 font-primary-600 text-white/50"
+    >
+      Sigue la evolución de la familia de <span class="capitalize">{name}</span>
+    </Typoografi>
+    
+    <div class="w-full grid movil:grid-cols-1 desktop:grid-cols-3 gap-2">
+      <CardTypeAffinities
+        type={dataStats.types[0].type.name} 
+        className="w-full" 
+        data={dataStats}
+        title="Eficaz contra"
+        subtitle={`Ataques de ${dataStats}`}
+        affinities={data[0].damage_relations.double_damage_to}
+      />
+      <CardTypeAffinities
+        type={dataStats.types[0].type.name} 
+        className="w-full" 
+        data={dataStats}
+        title="Debilidades"
+        subtitle={`Daño recibido por ${name}`}
+        affinities={data[0].damage_relations.no_damage_to}
+      />
+      <CardTypeAffinities
+        type={dataStats.types[0].type.name} 
+        className="w-full" 
+        data={dataStats}
+        title="Resistencias"
+        subtitle="Daño recibido reducido"
+        affinities={data[0].damage_relations.half_damage_from}
+      />
+    </div>
+  </div>
 </Layout>

@@ -1,0 +1,53 @@
+---
+import Icon from "@/@core/components/Icon/Icon.astro";
+import Typographi from "@/@core/components/Typographi/Typographi.astro";
+import { cardThemes } from "@/models/themes/cardThemes";
+import { normalizeType } from "@/utils/banner/banner";
+
+export interface CardTypeAffinitiesProps {
+  type: string;
+  className?: string;
+  title: string;
+  subtitle?: string;
+  affinities?: any;
+}
+
+const { type, className, title, subtitle, affinities } = Astro.props as CardTypeAffinitiesProps;
+const typeKey = normalizeType([type]);
+const { border, tag, colorBar } = cardThemes[typeKey[0]];
+
+console.log('affinities', await affinities);
+
+---
+
+<article 
+  class={`
+  CardTypeAffinities border rounded-xs p-2 desktop:pb-5
+  ${border.borderColor} 
+  ${border.hoverBorderColor} 
+  ${tag?.bgTag} 
+  ${className}
+  `}
+>
+  <Typographi component="h3" className="text-txt-title3 font-primary-600">
+    {title}
+  </Typographi>
+  {subtitle && (
+    <Typographi component="p" className="text-txt-description4 font-primary-300 text-white/60">
+      {subtitle}
+    </Typographi>
+  )}
+
+  <div class="flex items-center gap-0.5 mt-1.5">
+    { affinities.map((tag: string) =>(
+      <div class={`bg-black/20 rounded-xs py-[0.2rem] px-1.5`}>
+        <Typographi 
+          component="span" 
+          className="text-txt-description3 font-primary-300 capitalize"
+        >
+            {normalizeType([tag.name])}
+        </Typographi>
+      </div>
+    ))}
+  </div>
+</article>

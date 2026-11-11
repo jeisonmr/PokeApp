@@ -1,0 +1,65 @@
+---
+import Typographi from "@/@core/components/Typographi/Typographi.astro";
+import { cardThemes } from "@/models/themes/cardThemes";
+import { normalizeType } from "@/utils/banner/banner";
+
+export interface CardContainerProps {
+  type: string;
+  className?: string;
+  data: any;
+}
+const { type, className, data } = Astro.props as CardContainerProps;
+const typeKey = normalizeType([type]);
+const { border, tag, colorBar } = cardThemes[typeKey[0]];
+---
+
+<article
+  class={`
+  CardBaseStatistics rounded-xs p-2 border
+  ${border?.borderColor} 
+  ${border?.hoverBorderColor} 
+  ${tag?.bgTag}
+  ${className}`}
+>
+  <div class="flex justify-between gap-2 items-center mb-1">
+    <Typographi 
+      component="h3" 
+      className="text-txt-title3 font-primary-600 "
+    >
+      Estadísticas base
+    </Typographi>
+    <Typographi
+      component="p"
+      className="text-txt-description4 font-primary-300 text-white/30"
+    >
+      Total <span class="font-primary-600 text-txt-description3 text-white pl-0.5"
+        >{data.stats.reduce((acc: number, stat: any) => acc + stat.base_stat, 0)}</span
+      >
+    </Typographi>
+  </div>
+
+  <div class="flex flex-col gap-2 w-full">
+  {
+    data.stats.map(({stat, base_stat}: {stat: {name: string}, base_stat: number}) => (
+      <div class="flex justify-between gap-2 items-center">
+        <Typographi
+          component="h4"
+          className="text-txt-description4 font-primary-300 text-white/30 w-[15%] capitalize"
+        >
+          {stat.name}
+        </Typographi>
+        <Typographi
+          component="span"
+          className="text-txt-description4 font-primary-600 text-white w-[2%]"
+        >
+          {base_stat}
+        </Typographi>
+        <div class="barra w-[80%] h-1 bg-white/30 rounded-xs">
+          <div class={`${colorBar} h-1 rounded-xs`} style={`width: ${base_stat > 100 ? 100 : base_stat}%`}></div>
+        </div>
+      </div>
+    ))
+  }
+  </div>
+
+</article>
