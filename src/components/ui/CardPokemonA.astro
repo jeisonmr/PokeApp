@@ -16,7 +16,7 @@ interface CardPokemonAProps {
 
 let { name, image, customCard, number, typeEn, generation } = Astro.props as CardPokemonAProps;
 
-const { border, bgCard, tag } = cardThemes[customCard![0]];
+const { border, bgCard, numberColor } = cardThemes[customCard![0]];
 
 const colorHalo = `var(--color-type-${typeEn?.[0]}-20)`;
 ---
@@ -36,7 +36,7 @@ const colorHalo = `var(--color-type-${typeEn?.[0]}-20)`;
 <header class="flex justify-between w-full items-start">
   <Typographi 
     component="span" 
-    className="flex items-center w-full text-txt-title2 font-pokemon-600 text-black-30"
+    className={`flex items-center w-full text-txt-title2 font-pokemon-600 ${numberColor}`}
   >
     #{number}
   </Typographi>
@@ -74,19 +74,22 @@ const colorHalo = `var(--color-type-${typeEn?.[0]}-20)`;
     </h3>
     <div class="flex flex-wrap gap-1">
       {
-        customCard?.map((tag:string) => (
-          <Typographi 
-            component="span"
-            className={`flex w-fit gap-0.5 text-txt-description3 font-primary-300 py-[0.7rem] px-1 rounded-xs capitalize 
-            ${cardThemes![tag]?.tag.bgTag}`}
-          >
-            <Icon 
-              icon={tag} 
-              className="w-[1.7rem] h-auto"
-            />
-            {tag}
-          </Typographi>
-        ))
+        customCard?.map((tag:string) => {
+          const { textColor } = cardThemes[tag]!;
+          return (
+            <Typographi 
+              component="span"
+              className={`flex w-fit gap-0.5 ${textColor} text-txt-description3 font-primary-300 py-[0.7rem] px-1 rounded-xs capitalize 
+              ${cardThemes[tag]?.tag.bgTag}`}
+            >
+              <Icon 
+                icon={tag} 
+                className="w-[1.7rem] h-auto"
+              />
+              {tag}
+            </Typographi>
+          )
+        })
       }
     </div>
   </footer>

@@ -33,7 +33,9 @@ const dataSinglePokemon = {
   image: dataStats.sprites.other?.dream_world.front_default,
   type: primaryType,
   number: dataStats.id,
-  description: species.flavor_text_entries.find(({language}: { language: { name: string } }) => language.name === "es")?.flavor_text
+  description: species?.flavor_text_entries?.find(({language}: { language: { name: string } }) => {
+    return language.name === "es" || language.name === "en";
+  })?.flavor_text
 };
 
 // Obtener tipos del Pokémon en paralelo
@@ -61,7 +63,6 @@ const damageRelations = {
 };
 
 const evolution = await getEvolutionPokemon(dataStats.id);
-console.log('EVOLUCION:', evolution);
 ---
 
 <Layout className="flex flex-col gap-3" title={`Pokemon ${name}`}>
@@ -113,7 +114,7 @@ console.log('EVOLUCION:', evolution);
           className="w-full" 
           data={dataStats}
           title="Eficaz contra"
-          subtitle={`Ataques de tipo`}
+          subtitle={`Oponentes de tipo`}
           affinities={damageRelations.doubleDamageTo}
         />
         )
@@ -125,7 +126,7 @@ console.log('EVOLUCION:', evolution);
           className="w-full" 
           data={dataStats}
           title="Debilidades"
-          subtitle={`Daño recibido por ${name}`}
+          subtitle={`${name} tiene debilidades contra los tipos`}
           affinities={damageRelations.doubleDamageFrom}
         />
         )
@@ -148,8 +149,8 @@ console.log('EVOLUCION:', evolution);
           type={dataStats.types[0].type.name} 
           className="w-full" 
           data={dataStats}
-          title="Resistencias"
-          subtitle="Daño recibido reducido"
+          title="Resistencia"
+          subtitle="Recibe poco daño de estos tipos"
           affinities={damageRelations.halfDamageFrom}
         />
         )
@@ -161,7 +162,7 @@ console.log('EVOLUCION:', evolution);
           className="w-full" 
           data={dataStats}
           title="Inmunidades"
-          subtitle="No recibes daño de estos tipos"
+          subtitle="No recibe daño de estos tipos"
           affinities={damageRelations.noDamageFrom}
         />
         )
@@ -192,11 +193,13 @@ console.log('EVOLUCION:', evolution);
     {
       evolution.map((pokemon: any) => (
         <li class="hover:scale-[1.05] transition-transform duration-200">
-          <CardPokemonB
-            name={pokemon.name}
-            image={pokemon.sprites}
-            types={pokemon.types}
-          />
+          <a href={`/pokemon/${pokemon.name}`}>
+            <CardPokemonB
+              name={pokemon.name}
+              image={pokemon.sprites}
+              types={pokemon.types}
+            />
+          </a>
         </li>
       ))
     }

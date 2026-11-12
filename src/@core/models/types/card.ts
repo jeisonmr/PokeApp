@@ -3,6 +3,7 @@ export interface CardProps {
   bgCard: string;
   bgCardInternal?: string;
   textColor?: string;
+  numberColor?: string;
   border: {
     borderColor: string;
     hoverBorderColor: string;

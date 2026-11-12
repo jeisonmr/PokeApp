@@ -38,5 +38,7 @@
   { "value": "generation-vii", "label": "Generación VII" },
   { "value": "generation-viii", "label": "Generación VIII" },
   { "value": "generation-ix", "label": "Generación IX" }
-]
+],
+
+"author": "Jeison Muñoz R"
 }
