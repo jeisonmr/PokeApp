@@ -46,6 +46,8 @@ const colorHalo = `var(--color-type-${typeEn?.[0]}-20)`;
     width={24}
     height={24}
     class="w-2 h-auto object-contain aspect-square"
+    loading="lazy"
+    aria-hidden="true"
   />
 </header>
   {
@@ -59,17 +61,21 @@ const colorHalo = `var(--color-type-${typeEn?.[0]}-20)`;
         </svg>
         <Image
           src={image}
-          alt={"Foto"}
+          alt={name || "Pokemon"}
           width={10}
           height={10}
           aria-hidden="true"
           class="w-[14.2rem] h-auto object-contain aspect-square relative z-20"
+          title={`Ir a la interna de ${name}`}
+          loading="lazy"
+          decoding="async"
+          fetchpriority="low"
         />
       </div>
     )
   }
   <footer class="w-full flex flex-col gap-1 flex-1">
-    <h3 class="text-txt-title3 font-primary-600 capitalize">
+    <h3 class="text-txt-title3 font-primary-600 text-white capitalize">
       {name}
     </h3>
     <div class="flex flex-wrap gap-1">

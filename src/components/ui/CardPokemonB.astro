@@ -37,17 +37,20 @@ const { border, bgCardInternal } = cardThemes[type?.[0] || 'normal'];
       <div class={`relative w-full h-full flex items-center justify-center`}>
         <Image
           src={image}
-          alt={"Foto"}
+          alt={name || "Pokemon"}
           width={10}
           height={10}
           aria-hidden="true"
           class="w-[14.2rem] h-auto object-contain aspect-square relative z-20"
+          loading="lazy"
+          decoding="async"
+          fetchpriority="low"
         />
       </div>
     )
   }
   <footer class="w-full flex flex-col gap-1 flex-1 items-center">
-    <h3 class="text-txt-title3 font-primary-600 capitalize">
+    <h3 class="text-txt-title3 font-primary-600 text-white capitalize">
       {name}
     </h3>
     <div class="flex flex-wrap gap-1">

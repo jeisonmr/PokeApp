@@ -7,9 +7,10 @@ import Banner from "../ui/Banner.astro";
 export interface BannerProps {
   singlePage?: boolean;
   dataPokemon?: any;
+  idx?: number;
 }
 
-const { singlePage = false, dataPokemon } = Astro.props as BannerProps;
+const { singlePage = false, dataPokemon, idx = 0 } = Astro.props as BannerProps;
 
 // Data API - Envolviendo en función async
 const idBanners = IdBanners.idBanners;
@@ -38,6 +39,7 @@ const pokemonFromBanner = await Promise.all(
       <Banner
         {...dataPokemon}
         singlePage={singlePage}
+        idx={idx}
       />
       )
     : (

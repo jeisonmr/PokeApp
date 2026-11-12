@@ -19,15 +19,21 @@ const { src, alt = "", className = { mobile: "", desktop: "" }, wrapperClass = "
   <img 
     src={src.mobile} 
     alt=""
-    loading="lazy"
-    class={`${className.mobile || ""} images_mobile w-full h-full object-fill desktop:hidden`}
+    width="100%"
+    height="100%"
+    class={`${className.mobile || ""} images_mobile w-full h-full object-fill aspect-video desktop:hidden`}
     aria-hidden="true"
+    fetchpriority="high"
+    decoding="async"
   />
   <img
     src={src.desktop}
     alt=""
-    loading="lazy"
+    width="100%"
+    height="100%"
     class={`${className.desktop || ""} images_desktop w-full h-full object-fill aspect-square hidden desktop:block`}
     aria-hidden="true"
+    fetchpriority="high"
+    decoding="async"
   />
 </div>

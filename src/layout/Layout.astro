@@ -1,27 +1,62 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import Footer from '@/components/blocks/Footer.astro';
+import Translate from '@/components/ui/Translate.astro';
+import ogImage from '@base/public/images/pokeweb.webp';
 import '@/styles/global.css';
 
 export interface LayoutProps {
 	title?: string;
+	description?: string;
 	className?: string;
+	canonical?: string;
+	image?: string;
+	url?: string;
+	keywords?: string;
 }
 
-const { title, className } = Astro.props;
+const { title, description, className, canonical, image, url, keywords } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description || "Descubre todos los Pokémon de la Pokédex con información detallada, tipos, evoluciones y más."} />
+		<meta 
+			name="keywords" 
+			content={keywords || `Pokémon, Pokédex, Pokéball, Pokémon primera generación, Pokémon segunda generación, Pokémon tercera generación, Pokémon cuarta generación, 
+			Pokémon quinta generación, Pokémon sexta generación, Pokémon séptima generación, Pokémon octava generación, Pokémon novena generación, Datos pokémon`} 
+		/>
+		<meta name="author" content="Jeison MR | @jeisonmr" />
+		<meta name="robots" content="index, follow" />
+
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonical || Astro.url.origin} />
+		
+		<!-- Favicon -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		
+		<!-- Open Graph - LinkedIn -->
+		<meta property="og:title" content={title || 'PokeWeb'} />
+		<meta property="og:description" content={description || "Descubre todos los Pokémon de la Pokédex con información detallada, tipos, evoluciones y más."} />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content={image || ogImage.src} />
+		<meta property="og:url" content={url || Astro.url.href} />
+		
+		<!-- Title -->
 		<title>{title || 'PokeWeb'}</title>
+		
+		<!-- Client Router -->
 		<ClientRouter transition:name="hero" />
 	</head>
 	<body class={`LayoutStyle	${className}`}>
-		<slot />
+		<main id="main-content">
+			<slot />
+		</main>
+		<Footer />
 		<script src="/src/scripts/main.js"></script>
 	</body>
 </html>

@@ -37,7 +37,7 @@ const pokemonsAll: PokemonDetails[] = await Promise.all(
     ) 
 ---
 
-<Layout title={"Pokemon SSG"}>
+<Layout>
   <header>
     <Nav />
   </header>
@@ -45,7 +45,7 @@ const pokemonsAll: PokemonDetails[] = await Promise.all(
   <section class="block-padding-big-x flex flex-col gap-2 h-auto">
     <Typographi
       component="h2"
-      className="movil:text-txt-title3 desktop:text-txt-title2 font-primary-600 pt-2.5 desktop:pt-5"
+      className="movil:text-txt-title3 desktop:text-txt-title2 font-primary-600 pt-2.5 desktop:pt-5 text-white"
     >
       Encuentra tu Pokémon
     </Typographi>
@@ -82,7 +82,6 @@ const pokemonsAll: PokemonDetails[] = await Promise.all(
       }
     </ul>
   </section>
-  <Footer />
 </Layout>
 
 <script define:vars={{ pokemonsAll }}>

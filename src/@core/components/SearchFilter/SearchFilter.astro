@@ -33,7 +33,7 @@ const {
       <div class="w-[50%] flex flex-col gap-0.5 containerSelect">
         {
           selectType && (
-            <select id="typeSelect" class="text-txt-description3 capitalize">
+            <select id="typeSelect" class="text-txt-description3 capitalize" name="Filtre por tipo">
               <option class="capitalize" value="">Tipo</option>
               {
                 types.sort().map((type: string):string[] => (
@@ -48,10 +48,10 @@ const {
       <div class="w-[50%] flex flex-col gap-0.5 containerSelect">
         {
           selectGeneration && (
-            <select id="generationSelect" class="text-txt-description3 capitalize">
+            <select id="generationSelect" class="text-txt-description3 capitalize" name="Filtre por generación">
               <option class="capitalize" value="">Generación</option>
               {
-                generations.map((generation: { value: number; label: string }) => (
+                generations.map((generation: { value: string; label: string }) => (
                   <option class="capitalize" value={generation.value}>{generation.label}</option>
                 ))
               }

@@ -13,9 +13,10 @@ export interface BannerUIProps{
   type?: string;
   number?: number;
   singlePage?: boolean;
+  idx?: number;
 }
 
-const { name, description, image, type, number, singlePage } = Astro.props;
+const { name, description, image, type, number, singlePage, idx } = Astro.props;
 
 const types = type?.map(({type}:any) =>{
   return type.name
@@ -46,7 +47,7 @@ const iconMedal = Array.of(...normalizedType);
     <div class="movil:h-60 desktop:h-[70vh] movil:w-full desktop:w-1/2 relative z-10 flex flex-col desktop:justify-center gap-1">
       <div class="flex flex-col movil:gap-2 desktop:gap-5">
         <Typographi
-          component="h1"
+          component={(singlePage || idx === 0) ? "h1" : "h2"}
           className="capitalize text-4xl font-pokemon-300 text-txt-title0 text-white"
         >
           {name}
@@ -74,7 +75,7 @@ const iconMedal = Array.of(...normalizedType);
             ))}
             <Typographi 
               component="span" 
-              className="font-pokemon-600 text-txt-title1 ml-1.5"
+              className="font-pokemon-600 text-txt-title1 ml-1.5 text-white"
             >
               #{number}
             </Typographi>
@@ -86,6 +87,7 @@ const iconMedal = Array.of(...normalizedType);
         href={singlePage ? '#affinities-base' : `/pokemon/${name}`} 
         class="w-fit flex items-center justify-center gap-1 font-primary-600 text-txt-title3 bg-black/80 text-white rounded-xs p-1.5 cursor-pointer"
         aria-label="Ver detalles del pokemon"
+        title="Ver detalles del pokemon"
       >
         <Image
           src={iconPokeball}
@@ -112,6 +114,9 @@ const iconMedal = Array.of(...normalizedType);
             width={200}
             height={200}
             class="pokemon_image object-fill w-20 desktop:w-full xl:w-[80%] h-auto aspect-square"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="high"
           />
         </a>
       )}

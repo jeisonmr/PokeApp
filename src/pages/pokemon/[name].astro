@@ -65,14 +65,22 @@ const damageRelations = {
 const evolution = await getEvolutionPokemon(dataStats.id);
 ---
 
-<Layout className="flex flex-col gap-3" title={`Pokemon ${name}`}>
+<Layout 
+  className="flex flex-col gap-3" 
+  title={`${name.toUpperCase()}`}
+  description={`${dataSinglePokemon.description}`}
+  image={dataSinglePokemon.image}
+  url={`${Astro.url.origin}/pokemon/${name}`}
+  canonical={`${Astro.url.origin}/pokemon/${name}`}
+  keywords={dataSinglePokemon.type.map((type: any) => type.type.name).join(", ")}
+>
 
   <Banner singlePage={true} dataPokemon={dataSinglePokemon} />
 
   <section id="affinities-base" class="block-padding-medium-x flex flex-col gap-2">
     <Typoografi 
-      component="h1" 
-      className="text-txt-title2 font-primary-600 "
+      component="h2" 
+      className="text-txt-title2 font-primary-600 text-white"
     >
      Conoce a {name}
     </Typoografi>
@@ -94,7 +102,7 @@ const evolution = await getEvolutionPokemon(dataStats.id);
   <section class="block-padding-medium-x flex flex-col gap-1">
     <Typoografi 
       component="h2" 
-      className="text-txt-title2 font-primary-600"
+      className="text-txt-title2 font-primary-600 text-white"
     >
       Afinidades de tipo
     </Typoografi>
@@ -185,7 +193,7 @@ const evolution = await getEvolutionPokemon(dataStats.id);
   <section class="block-padding-medium-x flex flex-col gap-2">
     <Typoografi 
       component="h2" 
-      className="text-txt-title2 font-primary-600"
+      className="text-txt-title2 font-primary-600 text-white"
     >
       Evolución
     </Typoografi>

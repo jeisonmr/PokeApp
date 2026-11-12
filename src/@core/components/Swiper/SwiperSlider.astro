@@ -41,9 +41,9 @@ const {
   <div class={`swiper-wrapper ${swiperWrapper}`}>
     <!-- Slides -->
     {
-      slideProps?.map((props:any)=>(
+      slideProps?.map((props:any, index:number)=>(
         <div class={`swiper-slide ${swiperSlide}`}>
-          <Component {...props}/>
+          <Component {...props} idx={index} />
         </div>
       ))
     }
