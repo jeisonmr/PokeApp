@@ -1,6 +1,5 @@
 ---
 import Banner from "@/components/blocks/Banner.astro";
-import Nav from "@/components/ui/Nav.astro";
 import Layout from "@/layout/Layout.astro";
 import { getPokemonLimit, getSpecies } from "@/services/api.services";
 import Typographi from "@/@core/components/Typographi/Typographi.astro";
@@ -8,10 +7,9 @@ import SearchFilter from "@/@core/components/SearchFilter/SearchFilter.astro";
 import CardPokemonA from "@/components/ui/CardPokemonA.astro";
 import { normalizeType } from "@/utils/banner/banner";
 import { getNamePokemon } from "@/services/api.services";
-import type { PokemonProps } from "@/models/types/pokemon";
 import type { PokemonDetails } from "@/models/types/pokemonAll";
 import { COUNT_POKEMONS } from "@/utils/constants/services.constans";
-import Footer from "@/components/blocks/Footer.astro";
+import Icon from "@/@core/components/Icon/Icon.astro";
 
 const pokemonResults = await getPokemonLimit(COUNT_POKEMONS);
 const pokemonsAll: PokemonDetails[] = await Promise.all(
@@ -38,11 +36,8 @@ const pokemonsAll: PokemonDetails[] = await Promise.all(
 ---
 
 <Layout>
-  <header>
-    <Nav />
-  </header>
   <Banner />
-  <section class="block-padding-big-x flex flex-col gap-2 h-auto">
+  <section class="block-padding-big-x flex flex-col gap-2 h-auto relative">
     <Typographi
       component="h2"
       className="movil:text-txt-title3 desktop:text-txt-title2 font-primary-600 pt-2.5 desktop:pt-5 text-white"
@@ -61,12 +56,15 @@ const pokemonsAll: PokemonDetails[] = await Promise.all(
       {pokemonsAll.length} Pókemon <span class="tex-white">encontrados</span>
     </h3>
 
-    <ul class="grid movil:grid-cols-2 desktop:grid-cols-3 movil:gap-0.5 desktop:gap-1.5 items-center justify-center">
+    <ul class="grid movil:grid-cols-2 desktop:grid-cols-3 movil:gap-0.5 desktop:gap-1.5 items-center justify-center max-desktop:mb-6">
       {
-        pokemonsAll.map(({ name, image, type, number, typeEn, generation }) => {
+        pokemonsAll.map(({ name, image, type, number, typeEn, generation }, idx) => {
           return (
-            <li class="h-full last:max-desktop:col-span-2">
-              <a href={`/pokemon/${name}`}>
+            <li class={`h-full ${idx % 2 === 0 && 'last:max-desktop:col-span-2'}`}>
+              <a 
+                href={`/pokemon/${name}`}
+                aria-label={`Más información sobre ${name}`}
+              >
                 <CardPokemonA
                   name={name}
                   image={image}
@@ -81,6 +79,12 @@ const pokemonsAll: PokemonDetails[] = await Promise.all(
         })
       }
     </ul>
+
+    <div class="absolute bottom-0 movil:right-2 desktop:right-0.5 md:right-5 cursor-pointer">
+      <a href="#top">
+        <Icon icon="arrow_left" className="w-4 h-4 transform rotate-90" />
+      </a>
+    </div>
   </section>
 </Layout>
 

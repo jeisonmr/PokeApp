@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 
 export interface IconProps {
-  icon?: "acero" | "agua" | "bicho" | "dragon" | "electrico" | "fantasma" | "fuego" | "hada" | "hielo" | "lucha" | "normal" | "planta" | "psíquico" | "roca" | "siniestro" | "tierra" | "veneno" | "volador" | "pokeball";
+  icon?: "acero" | "agua" | "bicho" | "dragon" | "electrico" | "fantasma" | "fuego" | "hada" | "hielo" | "lucha" | "normal" | "planta" | "psíquico" | "roca" | "siniestro" | "tierra" | "veneno" | "volador" | "pokeball" | "github" | "linkedin" | "code" | "arrow_back" | "arrow_up" | "arrow_left";
   className?: string;
 }
 
@@ -28,6 +28,12 @@ const iconType = {
   veneno: {url:"/icons/types/veneno.png", width: 10, height: 10, alt:"Tipo Veneno"},
   volador: {url:"/icons/types/volador.png", width: 10, height: 10, alt:"Tipo Volador"},
   pokeball: {url:"/icons/pokeball.png", width: 10, height: 10, alt:"Pokeball"},
+  github: {url:"/icons/github.webp", width: 10, height: 10, alt:"Github"},
+  linkedin: {url:"/icons/linkedin.webp", width: 10, height: 10, alt:"Linkedin"},
+  code: {url:"/icons/code.webp", width: 10, height: 10, alt:"Code"},
+  arrow_back: {url:"/icons/arrow_back.webp", width: 10, height: 10, alt:"Arrow Back"},
+  arrow_up: {url:"/icons/arrow_up.webp", width: 10, height: 10, alt:"Arrow Up"},
+  arrow_left: {url:"/icons/arrow_left.webp", width: 10, height: 10, alt:"Arrow Left"},
 };
 ---
 

@@ -1,4 +1,6 @@
 ---
+import { Picture  } from 'astro:assets';
+
 export interface Props {
   src:{
     mobile: string;
@@ -16,22 +18,27 @@ const { src, alt = "", className = { mobile: "", desktop: "" }, wrapperClass = "
 ---
 
 <div class={`ImageResponsive w-full h-full ${wrapperClass}`}>
-  <img 
-    src={src.mobile} 
+  <Picture
+    src={src.mobile}
     alt=""
-    width="100%"
-    height="100%"
-    class={`${className.mobile || ""} images_mobile w-full h-full object-fill aspect-video desktop:hidden`}
+    format={'webp'}
+    quality={50}
+    width={800}
+    height={450}
+    class={`${className.mobile || ''} images_mobile w-full h-full aspect-video object-cover desktop:hidden`}
     aria-hidden="true"
     fetchpriority="high"
     decoding="async"
   />
-  <img
+
+  <Picture
     src={src.desktop}
     alt=""
-    width="100%"
-    height="100%"
-    class={`${className.desktop || ""} images_desktop w-full h-full object-fill aspect-square hidden desktop:block`}
+    format={'webp'}
+    quality={50}
+    width={1200}
+    height={1200}
+    class={`${className.desktop || ''} images_desktop w-full h-full aspect-square object-cover hidden desktop:block`}
     aria-hidden="true"
     fetchpriority="high"
     decoding="async"

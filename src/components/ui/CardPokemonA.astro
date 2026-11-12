@@ -62,14 +62,16 @@ const colorHalo = `var(--color-type-${typeEn?.[0]}-20)`;
         <Image
           src={image}
           alt={name || "Pokemon"}
-          width={10}
-          height={10}
+          width={142}
+          height={142}
           aria-hidden="true"
-          class="w-[14.2rem] h-auto object-contain aspect-square relative z-20"
+          class="w-[14.2rem] h-[14.2rem] object-contain aspect-square relative z-20"
           title={`Ir a la interna de ${name}`}
           loading="lazy"
           decoding="async"
           fetchpriority="low"
+          quality={50}
+          format="webp"
         />
       </div>
     )

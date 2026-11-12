@@ -33,6 +33,9 @@ const {
       <div class="w-[50%] flex flex-col gap-0.5 containerSelect">
         {
           selectType && (
+            <label for="typeSelect" class="sr-only">
+              Filtrar Pokémon por tipo
+            </label>
             <select id="typeSelect" class="text-txt-description3 capitalize" name="Filtre por tipo">
               <option class="capitalize" value="">Tipo</option>
               {
@@ -48,6 +51,9 @@ const {
       <div class="w-[50%] flex flex-col gap-0.5 containerSelect">
         {
           selectGeneration && (
+            <label for="generationSelect" class="sr-only">
+              Filtrar Pokémon por generación
+            </label>
             <select id="generationSelect" class="text-txt-description3 capitalize" name="Filtre por generación">
               <option class="capitalize" value="">Generación</option>
               {

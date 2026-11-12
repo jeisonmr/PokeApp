@@ -1,9 +1,9 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import Footer from '@/components/blocks/Footer.astro';
-import Translate from '@/components/ui/Translate.astro';
 import ogImage from '@base/public/images/pokeweb.webp';
 import '@/styles/global.css';
+import Nav from '@/components/ui/Nav.astro';
 
 export interface LayoutProps {
 	title?: string;
@@ -13,9 +13,10 @@ export interface LayoutProps {
 	image?: string;
 	url?: string;
 	keywords?: string;
+	mainClass?: string;
 }
 
-const { title, description, className, canonical, image, url, keywords } = Astro.props;
+const { title, description, className, canonical, image, url, keywords, mainClass } = Astro.props;
 ---
 
 <html lang="es">
@@ -53,7 +54,10 @@ const { title, description, className, canonical, image, url, keywords } = Astro
 		<ClientRouter transition:name="hero" />
 	</head>
 	<body class={`LayoutStyle	${className}`}>
-		<main id="main-content">
+		<header>
+			<Nav />
+		</header>
+		<main id="main-content" class={`${mainClass}`}>
 			<slot />
 		</main>
 		<Footer />

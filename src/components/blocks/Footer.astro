@@ -1,14 +1,40 @@
 ---
 import Typography  from "@core/components/Typographi/Typographi.astro";
 import data from "@/data/data.json";
+import Icon from "@core/components/Icon/Icon.astro";
+import { github, linkedin } from "@/data/data.json";
 ---
 
-<footer class="block-padding-x py-4 flex justify-center items-center">
+<footer class="block-padding-x py-4 grid grid-cols-1 desktop:grid-cols-3 justify-center items-center gap-2">
+  <div  class="flex gap-1 justify-center desktop:justify-start">
+    <a 
+      href={github} 
+      target="_blank" 
+      rel="follow referrer" 
+      aria-label="GitHub"
+    >
+    <Icon 
+      icon="github" 
+      className="w-4 h-4"
+    />
+    </a>
+    <a 
+      href={linkedin} 
+      target="_blank" 
+      rel="follow referrer" 
+      aria-label="LinkedIn"
+    >
+    <Icon 
+      icon="linkedin" 
+      className="w-4 h-4"
+    />
+    </a>
+  </div>
   <Typography
     component="h4"
     className="text-center font-primary-600 text-white"
   >
     {data.author} © 2026 Todos los derechos reservados 
-    <p class="mt-1">Desarrollado con  <span class="animate-pulse">💛💙❤️</span></p>
+    <p class="mt-1">Desarrollado con <span class="animate-pulse">💛💙❤️</span></p>
   </Typography>
 </footer>

@@ -8,6 +8,7 @@ import CardBaseStatistics from '@/components/ui/CardBaseStatistics.astro';
 import CardSkills from '@/components/ui/CardSkills.astro';
 import CardTypeAffinities from '@/components/ui/CardTypeAffinities.astro';
 import CardPokemonB from '@/components/ui/CardPokemonB.astro';
+import Icon from '@/@core/components/Icon/Icon.astro';
  
 export async function getStaticPaths() {
   const response = await getPokemonLimit(COUNT_POKEMONS);
@@ -66,7 +67,8 @@ const evolution = await getEvolutionPokemon(dataStats.id);
 ---
 
 <Layout 
-  className="flex flex-col gap-3" 
+  className=""
+  mainClass="flex flex-col gap-3 relative"
   title={`${name.toUpperCase()}`}
   description={`${dataSinglePokemon.description}`}
   image={dataSinglePokemon.image}
@@ -213,4 +215,10 @@ const evolution = await getEvolutionPokemon(dataStats.id);
     }
     </ul>
   </section>
+
+  <div class="fixed bottom-12 desktop:bottom-15 movil:right-3 desktop:right-0.5 md:right-2 cursor-pointer">
+    <a href="/">
+      <Icon icon="arrow_left" className="movil:w-4.5 movil:h-4.5 desktop:w-6 desktop:h-6" />
+    </a>
+  </div>
 </Layout>
