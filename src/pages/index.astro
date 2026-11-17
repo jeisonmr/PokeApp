@@ -26,7 +26,8 @@ const pokemonsAll: PokemonDetails[] = await Promise.all(
           name: data.name,
           image: data.sprites?.versions?.['generation-viii']?.['brilliant-diamond-shining-pearl']?.front_default
           || data.sprites?.versions?.['generation-viii']?.['sword-shield']?.front_default
-          || data.sprites?.versions?.['generation-viii']?.['legends-arceus']?.front_default,
+          || data.sprites?.versions?.['generation-viii']?.['legends-arceus']?.front_default
+          || data.sprites.other?.dream_world.front_default,
           type: normalizeType(type),
           typeEn: type,
           number: data.id,

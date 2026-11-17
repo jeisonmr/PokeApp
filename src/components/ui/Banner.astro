@@ -4,7 +4,6 @@ import ImagesResponsive from "@/@core/components/ImagesResponsive/ImagesResponsi
 import Typographi from "@/@core/components/Typographi/Typographi.astro";
 import { Image } from "astro:assets";
 import { normalizeType } from "../../utils/banner/banner";
-import iconPokeball from "@base/public/icons/pokeball.png";
 
 export interface BannerUIProps{
   name?: string;
@@ -112,7 +111,7 @@ const iconMedal = Array.of(...normalizedType);
             loading="lazy"
             decoding="async"
             fetchpriority="high"
-            quality={50}
+            quality={30}
             format="webp"
           />
         </a>
