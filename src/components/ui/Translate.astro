@@ -48,12 +48,6 @@
     const script = document.createElement('script');
     script.src = 'https://cdn.gtranslate.net/widgets/latest/lc.js';
     script.defer = true;
-    script.onload = () => {
-      console.log('GTranslate widget loaded');
-    };
-    script.onerror = () => {
-      console.error('Failed to load GTranslate widget');
-    };
     document.head.appendChild(script);
   }
 

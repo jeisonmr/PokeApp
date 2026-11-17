@@ -10,6 +10,7 @@ import { getNamePokemon } from "@/services/api.services";
 import type { PokemonDetails } from "@/models/types/pokemonAll";
 import { COUNT_POKEMONS } from "@/utils/constants/services.constans";
 import Icon from "@/@core/components/Icon/Icon.astro";
+import Pagination from "@/@core/components/Pagination/Pagination.astro";
 
 const pokemonResults = await getPokemonLimit(COUNT_POKEMONS);
 const pokemonsAll: PokemonDetails[] = await Promise.all(
@@ -60,7 +61,10 @@ const pokemonsAll: PokemonDetails[] = await Promise.all(
       {
         pokemonsAll.map(({ name, image, type, number, typeEn, generation }, idx) => {
           return (
-            <li class={`h-full ${idx % 2 === 0 && 'last:max-desktop:col-span-2'}`}>
+            <li 
+              class={`h-full ${idx % 2 === 0 && 'last:max-desktop:col-span-2'}`}
+              data-idx={idx}
+            >
               <a 
                 href={`/pokemon/${name}`}
                 aria-label={`Más información sobre ${name}`}
@@ -79,8 +83,12 @@ const pokemonsAll: PokemonDetails[] = await Promise.all(
         })
       }
     </ul>
+    <Pagination
+      dataContent={pokemonsAll}
+      groupPerPage={12}
+    />
 
-    <div class="absolute bottom-0 movil:right-2 desktop:right-0.5 md:right-5 cursor-pointer">
+    <div class="absolute movil:bottom-6 desktop:bottom-0 movil:right-2 desktop:right-0.5 md:right-5 cursor-pointer">
       <a href="#banner-section" aria-label="Ir al inicio">
         <Icon icon="arrow_left" className="w-4 h-4 transform rotate-90" />
       </a>

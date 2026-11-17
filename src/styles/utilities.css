@@ -34,6 +34,38 @@
   }
 
 
+  /* Estilos de la Paginación */
+  .pagination-component{
+    @apply w-full;
+    
+    .container-navegation{
+      @apply w-full;
+      .button-navegation-prev,
+      .button-navegation-next{
+        @apply w-full;
+      }
+      .button-navegation{
+        @apply w-fit rounded-xs hover:ring-2 hover:ring-white/30 py-1 px-2 duration-300 font-pokemon-600 text-txt-description3 tracking-widest cursor-pointer flex items-center justify-center gap-0.5;
+        &.desactive-nav{
+          @apply opacity-50 cursor-not-allowed;
+        }
+        .arrow-nevegation{
+          @apply text-txt-title3;
+        }
+      }
+      .container-pagination{
+        @apply w-full flex items-center justify-center gap-1;
+        .button-pagination{
+          @apply bg-black-30/70 hover:bg-white text-white hover:text-black-30 text-txt-description3 font-pokemon-600 w-4 h-4 rounded-xs flex items-center justify-center cursor-pointer duration-150;
+          &.active{
+            @apply text-black-30 bg-white;
+          }
+        }
+      }
+    }
+  }
+
+
   /* Utilidades generales Theme.css */
   .bg-linear-normal{    @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-normal-30)] via-50%   to-[var(--color-black-10)] to-90%;}
   .bg-linear-grass{     @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-grass-30)] via-50%    to-[var(--color-black-10)] to-90%;}
@@ -53,5 +85,4 @@
   .bg-linear-dark{      @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-dark-30)] via-50%     to-[var(--color-black-10)] to-90%;}
   .bg-linear-steel{     @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-steel-30)] via-50%    to-[var(--color-black-10)] to-90%;}
   .bg-linear-fairy{     @apply bg-linear-to-b from-[var(--color-black-10)] from-10% via-[var(--color-type-fairy-30)] via-50%    to-[var(--color-black-10)] to-90%;}
-
 }

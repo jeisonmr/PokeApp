@@ -1,0 +1,48 @@
+---
+export interface PaginationProps {
+  className?: {
+    container?: string;
+    containerNaegation?: string;
+    buttonNavegation?: string;
+    containerPagination?: string;
+    buttonPagination?: string;
+  };
+  groupPerPage?: number;
+  showNavigation?: boolean;
+  showPagination?: boolean;
+  dataContent?: string;
+}
+
+const { className, groupPerPage = 5, showNavigation = true, showPagination = true, dataContent = '' } = Astro.props;
+---
+
+<div  
+  class={`pagination-component w-full h-auto flex justify-between items-center gap-2 
+  ${className?.container}`}
+  data-group={JSON.stringify(groupPerPage)}  
+  data-content={JSON.stringify(dataContent)}
+>
+  {
+    showNavigation && (
+      <div class={`container-navegation w-full flex gap-2 items-center justify-between ${className?.containerNaegation}`}>
+        <button class={`button-navegation button-navigation-prev ${className?.buttonNavegation}`}>
+          <span class="arrow-nevegation arrow-navegation-prev">&lsaquo;</span>
+          <span class="max-desktop:hidden">
+            Anterior 
+          </span>
+        </button>
+        {
+          showPagination && (
+            <div class={`container-pagination ${className?.containerPagination}`}></div>
+          )
+        }
+        <button class={`button-navegation button-navigation-next ${className?.buttonNavegation}`}>
+          <span class="max-desktop:hidden">
+            Siguiente 
+          </span>
+          <span class="arrow-nevegation arrow-navegation-next">&rsaquo;</span>
+        </button>
+      </div>
+    )
+  }
+</div>

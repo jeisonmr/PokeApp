@@ -129,13 +129,13 @@ function initSearchFilter() {
   const clearFilters = document.getElementById('clearFilters');
   
   if (!searchInput || !pokemonList) {
-    console.warn('Search input or pokemon list not found');
+    // console.warn('Search input or pokemon list not found');
     return;
   }
   
   // Si ya está inicializado, no hacer nada
   if (initialized) {
-    console.log('Search filter already initialized');
+    // console.log('Search filter already initialized');
     return;
   }
   
@@ -160,10 +160,10 @@ function initSearchFilter() {
     const filtered = filterPokemons(searchTerm, typeFilter, generationFilter);
     const filteredNames = new Set(filtered.map(p => p.name));
     
-    console.log('Search term:', searchTerm);
-    console.log('Type filter:', typeFilter);
-    console.log('Generation filter:', generationFilter);
-    console.log('Filtered count:', filtered.length);
+    // console.log('Search term:', searchTerm);
+    // console.log('Type filter:', typeFilter);
+    // console.log('Generation filter:', generationFilter);
+    // console.log('Filtered count:', filtered.length);
     
     // Actualizar visibilidad de tags
     updateFilterTags(typeFilter, generationFilter);
@@ -172,6 +172,27 @@ function initSearchFilter() {
     const countElement = document.querySelector('h3');
     if (countElement) {
       countElement.innerHTML = `${filtered.length} Pókemon <span class="tex-white">encontrados</span>`;
+    }
+    
+    // Ocultar/mostrar paginador según si hay filtros activos
+    const paginationComponent = document.querySelector('.pagination-component');
+    const containerCards = pokemonList;
+    const hasActiveFilter = searchTerm !== '' || typeFilter !== '' || generationFilter !== '';
+    
+    if (paginationComponent) {
+      if (hasActiveFilter) {
+        paginationComponent.style.display = 'none';
+      } else {
+        paginationComponent.style.display = 'flex';
+      }
+    }
+    
+    // Mostrar todas las tarjetas cuando no hay filtros activos
+    if (!hasActiveFilter) {
+      const cards = pokemonList.querySelectorAll('li');
+      cards.forEach((card) => {
+        card.style.display = 'block';
+      });
     }
     
     // Ocultar/mostrar tarjetas por nombre

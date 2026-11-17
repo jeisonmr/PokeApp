@@ -12,5 +12,5 @@ export const generations = {
   9: { init: 906, end: 1025 },
 } as GenerationProps;
 
-// export const COUNT_POKEMONS = 1025;
-export const COUNT_POKEMONS = 21;
+export const COUNT_POKEMONS = 1025;
+// export const COUNT_POKEMONS = 9;
